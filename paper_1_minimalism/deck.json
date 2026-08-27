@@ -2,8 +2,23 @@
   "name": "dhe",
   "title": "Deep Hash Embeddings — минималистичный разбор",
   "storyboard": "storyboard/DHE Storyboard v2.dc.html",
-  "parts": [1, 2, 3, 4, 5, 6, 7, 8],
+  "parts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
   "scene": "Part{n}",
   "module": "deck/part{n}.py",
-  "skip": ["S1", "S2", "S3", "8.10"]
+  "skip": [
+    "7.2",
+    "8.10",
+    "S1",
+    "S2",
+    "S3"
+  ]
 }

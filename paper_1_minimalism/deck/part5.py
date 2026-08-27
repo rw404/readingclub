@@ -251,8 +251,11 @@ class Part5(DeckScene):
         left_w = (BODY_W - 135) / 2
         hist_w = (left_w - 45) / 2
         bars = flex_bars("5.5")
-        uni = bar_chart(bars[:8], hist_w, BODY_H * 0.58)
-        nor = bar_chart(bars[8:], hist_w, BODY_H)
+        # столбики плюс подпись σ должны уместиться между подписью кадра и
+        # нижним полем: полная высота рабочей области их не вмещает
+        plot_h = BODY_H - 90
+        uni = bar_chart(bars[:8], hist_w, plot_h * 0.58)
+        nor = bar_chart(bars[8:], hist_w, plot_h)
         uni_c = flex_col(uni, mono("σ = 0.577", SIZE_MONO, ID), gap=27)
         nor_c = flex_col(nor, mono("σ = 1", SIZE_MONO, INK), gap=27)
         hists = VGroup(uni_c, nor_c)
@@ -602,6 +605,13 @@ class Part5(DeckScene):
                       "a·(e+1) = a·e + a · значит hᵢ сдвигается на aᵢ mod m — "
                       "у каждого измерения на свою величину")
 
+        # что именно стоит за e и e + 1 — сквозной идентификатор и его сосед
+        legend = VGroup(mono("e =", SIZE_MONO, MUTED),
+                        mono(VIDEO_ID, SIZE_MONO, ID),
+                        mono("· e + 1 =", SIZE_MONO, MUTED),
+                        mono(NEIGHBOUR, SIZE_MONO, ID))
+        legend.arrange(RIGHT, buff=px(18))
+
         widths = [90, 216, 216, 135, 216]
         header = ["", "e", "aᵢ mod m", "перенос", "e + 1"]
         head_cols = [MUTED, ID, MUTED, MUTED, ID]
@@ -618,7 +628,9 @@ class Part5(DeckScene):
             r.arrange(RIGHT, buff=px(36))
             grid.add(r)
         grid.arrange(DOWN, buff=px(22), aligned_edge=LEFT)
-        grid.move_to(pos(BODY_LEFT, BODY_CY), aligned_edge=LEFT)
+        block = VGroup(legend, grid)
+        block.arrange(DOWN, buff=px(36), aligned_edge=LEFT)
+        block.move_to(pos(BODY_LEFT, BODY_CY), aligned_edge=LEFT)
 
         sx = BODY_LEFT + grid.width * 135 + 90
         side_w = BODY_LEFT + BODY_W - sx
@@ -640,6 +652,7 @@ class Part5(DeckScene):
         self.play(Transform(self.cap, cap), FadeOut(self.dead),
                   FadeOut(self.mish_curve), run_time=0.9)
         # layers 1-4: столбец hᵢ, сдвиг въезжает справа, перенос, новый столбец
+        self.play(FadeIn(legend, shift=RIGHT * px(20)), run_time=0.7)
         self.play(FadeIn(hrow), run_time=0.6)
         self.play(
             LaggedStart(*[FadeIn(r[:2]) for r in grid[1:]], lag_ratio=0.12),
@@ -667,7 +680,7 @@ class Part5(DeckScene):
         )
         self.play(FadeIn(blab), FadeIn(mean), run_time=0.9)
         self.delta_bars = bars
-        self.dead = VGroup(grid, sep, blab, mean)
+        self.dead = VGroup(legend, grid, sep, blab, mean)
         self.settle(b_wave(VGroup(*[r[2] for r in grid[1:]]), ID, 1.08,
                            0.12, 1.4),
                     b_indicate(grid[2][4], ATTR),

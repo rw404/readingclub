@@ -64,7 +64,6 @@ class Part7(DeckScene):
 
     def construct(self):
         self.f_7_1()
-        self.f_7_2()
         self.f_7_3()
         self.f_7_4()
         self.f_7_5()
@@ -110,57 +109,6 @@ class Part7(DeckScene):
                     b_wave(VGroup(strip[1], strip[2]), ATTR, 1.3, 0.15, 1.0),
                     b_wave(sums, None, 1.08, 0.16, 1.1))
 
-    # ------------------------------------------------------------ 7.2 -----
-    def f_7_2(self):
-        """Салатовый блок пытается встать между строками и не находит куда."""
-        self.frame("7.2")
-        cap = caption("В таблице места нет",
-                      "ключ строки — только ID · чтобы добавить атрибут, "
-                      "нужна строка на каждую пару (ID, атрибут)")
-
-        rows = VGroup(*[rect(630, 45, DIM, 0, fill=DIM, fill_opacity=1)
-                        for _ in range(4)])
-        rows.arrange(DOWN, buff=px(45))
-
-        ghost = rect(180, 45, ATTR, 0)
-        dash = VGroup()
-        for a, b in ((UL, UR), (UR, DR), (DR, DL), (DL, UL)):
-            dash.add(DashedLine(ghost.get_corner(a), ghost.get_corner(b),
-                                color=ATTR, stroke_width=S_THIN,
-                                dash_length=px(10)))
-        dash.set_stroke(opacity=0.4)
-        refuse = mono("✗", SIZE_MONO, ALERT)
-        attempt = flex_col(dash, refuse, gap=27)
-        row = flex_row(rows, attempt, gap=90)
-        body_center(row)
-
-        self.play(Transform(self.cap, cap), FadeOut(self.dead), run_time=0.9)
-        # layer 1: строки таблицы — каждая изолирована
-        self.play(ReplacementTransform(self.strip, rows[0]), run_time=1.1)
-        self.play(
-            LaggedStart(*[GrowFromEdge(r, LEFT) for r in rows[1:]],
-                        lag_ratio=0.15),
-            run_time=1.4,
-        )
-        # layer 2: попытка положить общее знание между строками
-        self.play(Create(dash), run_time=0.9)
-        for gap_i in (0, 1, 2):
-            self.play(
-                dash.animate.move_to(
-                    (rows[gap_i].get_center() + rows[gap_i + 1].get_center()) / 2
-                    + RIGHT * px(0)),
-                run_time=0.35,
-            )
-        self.play(dash.animate.move_to(attempt[0].get_center()), run_time=0.4)
-        # layer 3: отказ — это структурное ограничение
-        self.play(FadeIn(refuse, scale=0.6), run_time=0.6)
-        self.play(dash.animate.set_stroke(opacity=0.4), run_time=0.4)
-        self.rows_7_2 = rows
-        self.dead = VGroup(dash, refuse)
-        self.settle(b_wave(rows, MUTED, 1.03, 0.12, 1.3),
-                    b_flash_group(dash, ATTR, 5, 0.06, 1.1),
-                    b_spark(refuse, ALERT))
-
     # ------------------------------------------------------------ 7.3 -----
     def f_7_3(self):
         """Точки перекрашиваются по значению атрибута."""
@@ -172,8 +120,8 @@ class Part7(DeckScene):
         m = cluster_map("7.3")
 
         self.play(Transform(self.cap, cap), FadeOut(self.dead), run_time=0.9)
-        # morph: изолированные строки → карта кластеров
-        self.play(ReplacementTransform(self.rows_7_2, m.box), run_time=1.2)
+        # morph: полоса входа → карта кластеров
+        self.play(ReplacementTransform(self.strip, m.box), run_time=1.2)
         # layer 1: точки появляются серыми
         grey = [d.copy().set_color(DIM).set_opacity(1) for d in m.pts]
         self.play(
@@ -205,7 +153,7 @@ class Part7(DeckScene):
     def f_7_4(self):
         """Контраст двух половин — всё содержание кадра."""
         self.frame("7.4")
-        cap = caption("Половина шум, половина смысл",
+        cap = caption("Объединение side features и id-embedding",
                       "у нового видео 1024 хеша сети незнакомы, "
                       "а 34 числа атрибутов знакомы полностью")
 

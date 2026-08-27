@@ -540,10 +540,15 @@ def code_block(lines, x_px, y_px, css_px=SIZE_MONO, line_height=1.5):
         row = VGroup()
         col = 0
         for txt, colour in runs:
-            if txt.strip():
-                t = mono(txt, css_px, colour)
-                line_box(t, x_px + indent + col * adv, y_px + i * lh,
-                         line_height=line_height)
+            body = txt.strip()
+            if body:
+                # Pango drops the leading blank of a run, so the run is drawn
+                # stripped and shifted to the column of its first real
+                # character — otherwise `def` and `dhe_l1` come out glued.
+                lead = len(txt) - len(txt.lstrip())
+                t = mono(body, css_px, colour)
+                line_box(t, x_px + indent + (col + lead) * adv,
+                         y_px + i * lh, line_height=line_height)
                 row.add(t)
             col += len(txt)
         g.rows.append(row)
