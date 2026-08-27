@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Render a deck's film: one file per part plus one continuous cut.
+"""Render a deck: one video per part, one continuous cut, and the slide index.
 
-Every part is a single Manim scene cut into frames with `next_section`, so the
-same render produces both the continuous video and the per-frame clips that
-`build_pptx.py` turns into slides.
+Each part is a single `manim_slides.Slide` scene cut into frames with
+`self.frame(...)`.  Rendering through `manim-slides render` writes the normal
+Manim video *and* the per-slide clips plus `slides/<Scene>.json`, so the film
+and the PPTX come out of one render — `build_pptx.py` only has to convert.
 
     python -m deckkit.build_video paper_1_minimalism
     python -m deckkit.build_video paper_1_minimalism --parts 4 5
@@ -19,15 +20,16 @@ import sys
 from deckkit.deck import Deck
 
 QUALITY_DIR = {"l": "480p15", "m": "720p30", "h": "1080p60", "k": "2160p60"}
-MANIM = pathlib.Path(sys.executable).with_name("manim")
+BIN = pathlib.Path(sys.executable).parent
 
 
 def render(deck, part, quality):
     scene = deck.scene(part)
     stem = f"part{part}"
-    cmd = [str(MANIM), f"-q{quality}", "--save_sections",
+    # long form: manim-slides' own parser reads the "h" of "-qh" as -h/--help
+    cmd = [str(BIN / "manim-slides"), "render", "--quality", quality,
            "--media_dir", str(deck.media), "-o", stem,
-           str(deck.module(part)), scene]
+           str(deck.module(part).relative_to(deck.root)), scene]
     print(f"→ {scene} ({QUALITY_DIR[quality]})", flush=True)
     r = subprocess.run(cmd, cwd=deck.root, env=deck.env(),
                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT,

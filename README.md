@@ -16,7 +16,7 @@ paper_1_minimalism/   разбор №1: Deep Hash Embeddings
 
 ```bash
 python3 -m venv .venv
-.venv/bin/pip install manim python-pptx fonttools
+.venv/bin/pip install manim manim-slides python-pptx fonttools
 sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev \
                         fonts-inter fonts-jetbrains-mono
 sudo cp setup/fonts-local.conf /etc/fonts/local.conf && fc-cache -f
@@ -33,9 +33,16 @@ sudo cp setup/fonts-local.conf /etc/fonts/local.conf && fc-cache -f
 
 ## Как устроен каркас
 
-**Кадр = секция.** Часть разбора — одна непрерывная сцена Manim, разрезанная
-на кадры через `self.frame("5.6")` (обёртка над `next_section`). Из одного
-рендера получается и ролик, и последний кадр каждой секции для слайда.
+**Кадр = слайд.** Часть разбора — одна непрерывная сцена `manim_slides.Slide`,
+разрезанная на кадры через `self.frame("5.6")`. Один рендер даёт и ролик, и
+покадровые клипы: `deckkit.build_pptx` не рисует слайды заново, а отдаёт эти
+же клипы конвертеру `manim-slides`. Поэтому слайды анимируются ровно так же,
+как ролик, — это и есть ролик, нарезанный по границам кадров. Каждый слайд
+проигрывается сам при переходе на него, поверх стоит постер-кадр с финальным
+состоянием, а в заметках — `data-speaker-notes` целиком.
+
+Закрывающее затухание части — тоже слайд в рендере, но не кадр разбора;
+`build_pptx` выбрасывает его из манифеста перед конвертацией.
 
 **Хронометраж — из сториборда.** `settle()` доводит кадр ровно до
 длительности, объявленной в `data-speaker-notes`. Остаток бюджета он не

@@ -5,3 +5,5 @@ __pycache__/
 # промежуточный рендер: восстанавливается сборкой, в репозиторий не идёт
 */build/media/
 */build/stills/
+*/slides/
+*/build/slides-pptx/

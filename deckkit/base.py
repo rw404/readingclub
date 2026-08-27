@@ -9,7 +9,8 @@ import json
 import os
 import pathlib
 
-from manim import Scene, config, FadeIn, FadeOut, VGroup
+from manim import ManimColor, config, FadeIn, FadeOut, VGroup
+from manim_slides import Slide
 
 from deckkit.tokens import BG
 
@@ -49,22 +50,52 @@ def duration_of(screen, default=16.0):
     return default if d is None else d
 
 
-class DeckScene(Scene):
-    """A part of the deck.  Subclasses implement `construct`."""
+class DeckScene(Slide):
+    """A part of the deck.  Subclasses implement `construct`.
+
+    A `manim_slides.Slide`, so one render produces both the film and the slide
+    metadata: `manim-slides convert` turns the very same clips into a PPTX,
+    which is why the slides animate exactly like the video.
+    """
+
+    # manim-slides renders a reversed copy of every clip so a presenter can
+    # step backwards; the PPTX never uses them, and they double render time.
+    skip_reversing = True
 
     def setup(self):
-        self.camera.background_color = BG
+        # a ManimColor, not a bare string: manim-slides reads it back
+        self.camera.background_color = ManimColor(BG)
         self._budget = None
         self._frame_start = 0.0
+        self._frames_opened = 0
 
     # -- frame boundaries ---------------------------------------------------
     def frame(self, screen):
-        """Open a new storyboard frame.  Returns its budgeted duration."""
-        meta = FRAMES[screen]
+        """Open a new storyboard frame.  Returns its budgeted duration.
+
+        Each frame is one manim-slides slide *and* one manim section: the
+        slide is what the PPTX is cut on, the section keeps the per-frame
+        clips addressable by frame number.
+        """
+        # order matters: next_section() resets the pending slide config, so
+        # the section has to be opened before the slide, or the notes are lost
         self.next_section(name=screen, skip_animations=False)
+        if self._frames_opened:
+            # not before the first animation — that would open an empty slide
+            self.next_slide(notes=self._notes(screen))
+        else:
+            # the first slide of a part is already open; write onto its config
+            self._base_slide_config.notes = self._notes(screen)
+        self._frames_opened += 1
         self._budget = duration_of(screen)
         self._frame_start = self.clock()
         return self._budget
+
+    @staticmethod
+    def _notes(screen):
+        meta = FRAMES[screen]
+        notes = meta["notes"] or ""
+        return f"{meta['label']}\n\n{notes}" if notes else meta["label"]
 
     def clock(self):
         """Seconds of finished film, straight from the renderer.
@@ -114,6 +145,7 @@ class DeckScene(Scene):
         takes from the end of that section would be an empty screen.
         """
         self.next_section(name="_outro", skip_animations=False)
+        self.next_slide(notes="_outro")
         if self.mobjects:
             super().play(FadeOut(*self.mobjects), run_time=run_time)
 
