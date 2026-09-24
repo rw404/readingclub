@@ -7,6 +7,7 @@
 deckkit/              переиспользуемый каркас — общий для всех разборов
 setup/                системное окружение (шрифты, зависимости)
 paper_1_minimalism/   разбор №1: Deep Hash Embeddings
+paper_2_intent_dissonance/  разбор №2: Intent Dissonance (YouTube Shorts), 3b1b
 ```
 
 Каждый разбор — самостоятельная папка с манифестом `deck.json`; `deckkit`
@@ -19,6 +20,9 @@ python3 -m venv .venv
 .venv/bin/pip install manim manim-slides python-pptx fonttools
 sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev \
                         fonts-inter fonts-jetbrains-mono
+# для разбора №2 ещё Computer Modern и LaTeX для формул:
+sudo apt-get install -y fonts-cmu texlive-latex-extra texlive-fonts-recommended \
+                        texlive-science dvisvgm
 sudo cp setup/fonts-local.conf /etc/fonts/local.conf && fc-cache -f
 
 .venv/bin/python -m deckkit.storyboard  paper_1_minimalism   # .dc.html → frames.json
@@ -27,7 +31,9 @@ sudo cp setup/fonts-local.conf /etc/fonts/local.conf && fc-cache -f
 .venv/bin/python -m deckkit.verify      paper_1_minimalism   # критерии приёмки
 ```
 
-`--quality l` на сборщиках даёт быстрый черновой прогон в 480p15.
+`--quality l` на сборщиках даёт быстрый черновой прогон в 480p15,
+`--quality k` — 3840×2160 @ 60. `build_video --jobs N` рендерит N частей
+одновременно — каждая часть отдельный процесс Manim.
 `deckkit.digest <разбор> <кадр>` печатает кадр сториборда как компактный
 чертёж — читать HTML руками не нужно.
 
@@ -99,3 +105,23 @@ paper_N_name/
 
 `skip` — кадры, которые есть в сториборде, но в разбор не входят
 (спецификация системы, служебные карты).
+
+Необязательные ключи — для разбора со своей палитрой (как №2):
+
+```json
+{
+  "tokens": "deck/tokens.py",
+  "margin": 36
+}
+```
+
+`tokens` — модуль разбора с `PALETTE` и `BG`: по нему `verify` проверяет
+цветовые литералы и стоп-кадры вместо восьми токенов `deckkit.tokens`;
+`margin` — поле кадра в px для той же проверки.
+
+**Клик и петля.** Если после клика сцена продолжает двигаться (кубики едут
+по лентам, пунктир градиента ползёт), кадр режется на два слайда: переход
+клика с `auto_next=True` и следом петля `loop=True`. Длина петли кратна
+периодам всех движений, поэтому она замыкается без шва. `build_pptx`
+переносит `auto_next` в PowerPoint — такой слайд сам переходит в свою петлю
+по окончании клипа, и на каждый клик нужно одно нажатие.

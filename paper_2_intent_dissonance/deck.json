@@ -1,0 +1,19 @@
+{
+  "name": "intent",
+  "title": "Intent Dissonance — разбор в стиле 3Blue1Brown",
+  "storyboard": "storyboard/Intent Dissonance 3b1b.dc.html",
+  "parts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "scene": "Part{n}",
+  "module": "deck/part{n}.py",
+  "skip": [],
+  "tokens": "deck/tokens.py",
+  "margin": 36
+}

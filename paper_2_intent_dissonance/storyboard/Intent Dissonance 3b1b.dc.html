@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+html,body{margin:0;background:#000;}
+a{color:#58C4DD;text-decoration:none;}
+a:hover{color:#F4D345;}
+@keyframes grain{0%{transform:translate(0px,0px);}20%{transform:translate(-30px,20px);}40%{transform:translate(25px,-35px);}60%{transform:translate(-15px,40px);}80%{transform:translate(35px,10px);}100%{transform:translate(0px,0px);}}
+@keyframes gdash{to{stroke-dashoffset:-36;}}
+@keyframes flick{0%,100%{opacity:1;}50%{opacity:.72;}}
+@keyframes jit{0%,100%{transform:translate(0px,0px);}25%{transform:translate(-4px,1px);}75%{transform:translate(4px,-1px);}}
+@keyframes tilt{0%{transform:rotate(0deg);}38%{transform:rotate(-8deg);}56%{transform:rotate(-8deg);}100%{transform:rotate(0deg);}}
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+<section data-label="01 Титр" data-screen-label="01" data-speaker-notes="ИНТЕРТИТР. Шаблон: фон night #111110, PT Serif 64 paper, левый нижний сектор (x=160, y≈560). Удержание 3 с. Manim: FadeIn(title, run_time=1.4) → wait(3) → next_slide()." style="background:#000;overflow:hidden;">
+  <div style="position:absolute;left:160px;top:520px;display:flex;flex-direction:column;gap:32px;max-width:1400px;">
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;">ПРОЛОГ</div>
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;">Один учитель. Три способа смотреть.</div>
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;font-style:italic;">Jiang, Khani et al. · KDD 2026</div>
+  </div>
+<div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i0 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t0 }}</span></div>
+</section>
+
+<section data-label="02 Общий план" data-screen-label="02" data-speaker-notes="ОБЩИЙ ПЛАН. Камера: origin (960,170), без масштаба. Слои по порядку наложения: L1 ленты Home/Watch (земля) → L2 площадки Home, Watch → L3 студенты Home, Watch → L4 башня учителя (6 слоёв снизу вверх) + головы → L5 дуги signal → L6 площадка Shorts + пластины → L7 студент Shorts → L8 подписи. Шаги: [1] площадки поднимаются из плоскости (h: 0→0.3) [2] башня растёт послойно, задержка 0.2 с [3] студенты [4] ленты вытягиваются к подножию, по ним едут кубики данных; с крыши к студентам летит signal. Shorts остаётся stone — не подключено. Переход: этот кадр вернётся как эпилог (слайд 16)." style="background:#000;overflow:hidden;">
+  {{ sc1 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s1 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i1 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t1 }}</span></div>
+</section>
+
+<section data-label="03 Титр акт I" data-screen-label="03" data-speaker-notes="ИНТЕРТИТР. Камера до этого медленно панорамирует к серой площадке Shorts. FadeIn 1.4 с, удержание 3 с." style="background:#000;overflow:hidden;">
+  <div style="position:absolute;left:160px;top:560px;display:flex;flex-direction:column;gap:32px;max-width:1400px;">
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;">АКТ I · МИР И ПОЛОМКА</div>
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;">А там, где никто ничего не выбирает?</div>
+  </div>
+<div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i2 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t2 }}</span></div>
+</section>
+
+<section data-label="04 Выбор и поток" data-screen-label="04" data-speaker-notes="ГЕРОЙСКИЙ КАДР 2а. Две группы: LEFT origin (470,360), RIGHT origin (1330,330). LEFT: L1 платформа → L2 плитки 2.15×0.9 (длинные) → L3 фигура. RIGHT: L1 конвейер y∈[-12,10] (обрезан рамкой) → L2 пластины 1.2×0.08×1.1, MoveAlongPath, 11 с цикл, 6 шт → L3 фигура (неподвижна, поверх пластин). Шаги: [1] одна плитка поднимается z+0.6 (раздумье) [2] фигура сама шагает на плитку (1.8 с) [3] снизу сравнение: плита 4.4 кл. (15–20 мин) против пластины 0.22 кл. (≈1 мин). Масштаб: 1 мин = 0.22 клетки." style="background:#000;overflow:hidden;">
+  {{ sc3 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s3 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i3 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t3 }}</span></div>
+</section>
+
+<section data-label="05 Трубы" data-screen-label="05" data-speaker-notes="ПАРЫ ЗАДАЧ. 4 ряда в экранных координатах (y = 330 + i·200), без перекрытий. Кубик: сторона = 1.7 · v / max(пары). Шаг i: GrowFromCenter(кубик учителя) → Create(стрелка) → GrowFromCenter(кубик студента) → Write(отношение). Прошлые ряды приглушаются до 35%. [5] остаются яркими только досмотр и доля досмотра, пометка «≈ совпало»." style="background:#000;overflow:hidden;">
+  {{ sc4 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s4 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i4 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t4 }}</span></div>
+</section>
+
+<section data-label="06 Метки и признаки" data-screen-label="06" data-speaker-notes="2в → 2г. Камера панорамирует на −1920 px между частями. Часть A origin (640,760): пары столбиков, высота = значение × 7 кл.; лента = shorts, браузинг = watch. [1] главные пары (досмотр, негатив) растут [2] второстепенные, тоньше, без чисел. Часть B origin (2390,330): две плиты 10×10, шаг 0.56. [3] панорама, плиты [4] клетки Shorts зажигаются с каскадом 12 мс: 6 у учителя, 79 у студента." style="background:#000;overflow:hidden;">
+  {{ sc5 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s5 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i5 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t5 }}</span></div>
+</section>
+
+<section data-label="07 Под воду" data-screen-label="07" data-speaker-notes="2д — ЗАПОМНИТЬ КОМПОЗИЦИЮ, рифма со слайдом 15. Origin (760,470). Порядок: L1 отрицательные столбики (z от −h до 0) → L2 плоскость воды (watch, fill-opacity 0.3) → L3 положительные столбики → L4 студент Shorts + signal. Масштаб: 1% = 5 клеток. Шаги: [0] офлайн 0.7706 → 0.7708 [1] вода появляется [2] два столбика уходят под воду (−0.12%, −0.46%) [3] подпись." style="background:#000;overflow:hidden;">
+  {{ sc6 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s6 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i6 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t6 }}</span></div>
+</section>
+
+<section data-label="08 Титр акт II" data-screen-label="08" data-speaker-notes="ИНТЕРТИТР акта II. FadeIn 1.4 с, удержание 3 с." style="background:#000;overflow:hidden;">
+  <div style="position:absolute;left:160px;top:560px;display:flex;flex-direction:column;gap:32px;max-width:1400px;">
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;">АКТ II · ПЕРЕСТРОЙКА УЧИТЕЛЯ</div>
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;">Учителя нужно пустить в чужой мир.</div>
+  </div>
+<div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i7 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t7 }}</span></div>
+</section>
+
+<section data-label="09 Вход с отсеками" data-screen-label="09" data-speaker-notes="3а + 3б. Origin (560,380). Порядок: L1 три ленты одинаковой ширины 1.0 (уходят за нижнюю рамку) → L2 кубики данных по лентам → L3 брус-вход из 4 отсеков (общие 6.4 | Home 3.1 | Watch 3.1 | Shorts 3.1) → L4 башня над брусом, обрезана верхней рамкой → L5 кубик-сэмпл. Шаги [1–3]: по одному сэмплу; горят «общие» + свой отсек, чужие становятся пустым пунктирным контуром (fill-opacity 1→0). Справа формула построчно, нули — stone." style="background:#000;overflow:hidden;">
+  {{ sc8 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s8 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i8 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t8 }}</span></div>
+</section>
+
+<section data-label="10 Вентиль" data-screen-label="10" data-speaker-notes="3в + 3г + 3д — ГЕРОЙСКИЙ КАДР. Камера: origin (820,760), scale 1.25. Головы 3×3, шаг 1.3; старые: home ×2, watch ×2; новые Shorts: (2,1),(0,2),(1,2),(2,2); шумные с вентилем: (0,2),(2,1). [1] новые головы вырастают тёмными [2] кубик Главной поднимается — новые головы тёмные [3] кубик Shorts — новые головы загораются [4] градиенты пунктиром вниз (dashoffset-анимация); у шумных голов вентиль, пунктир обрывается у основания, сама голова мерцает [5] без вентиля: башня кренится и отматывается назад (Rotate −8° и обратно, 5.5 с, опора — низ башни)." style="background:#000;overflow:hidden;">
+  {{ sc9 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s9 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i9 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t9 }}</span></div>
+</section>
+
+<section data-label="11 Проводка" data-screen-label="11" data-speaker-notes="4б → 4в → 4г. Часть A origin (560,700): 6 кубиков-признаков, хаб на z=6, связи — линии, stroke-width анимируется. [0] ResNet, вход Главная, все связи 4 px [1] вход Shorts — ничего не меняется [2] Attention, вход Shorts: свайпы 12, общие 5, длинные 1.5 [3] вход Главная — толщины перетекают обратно. [4] панорама −1920 на память ускорителя. [5] оптимизатор 2.2→1.1, матрицы 1.6→0.8, в освободившееся место входят кубики батча; стрелка часов стоит." style="background:#000;overflow:hidden;">
+  {{ sc10 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s10 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i10 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t10 }}</span></div>
+</section>
+
+<section data-label="12 Дистилляция" data-screen-label="12" data-speaker-notes="5а → 5г. Часть A origin (420,520): трасса. [0] обучение → разметка → ящик, по трассе едут серые кубики [1] здание разметки растворяется (h→0), ящик едет к x=7.2, трасса короче, с крыши башни летят кубики signal; −10 ч. [2] панорама на студента: одна голова, две верёвки (ink, signal), голова дрожит [3] голова расщепляется: рабочая (только ink) и aux (только signal, пунктир влияния вниз в башню); формула." style="background:#000;overflow:hidden;">
+  {{ sc11 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s11 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i11 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t11 }}</span></div>
+</section>
+
+<section data-label="13 Титр акт III" data-screen-label="13" data-speaker-notes="ИНТЕРТИТР акта III." style="background:#000;overflow:hidden;">
+  <div style="position:absolute;left:160px;top:560px;display:flex;flex-direction:column;gap:32px;max-width:1400px;">
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;">АКТ III · РЕЗУЛЬТАТЫ</div>
+    <div style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;">Вместе — больше суммы.</div>
+  </div>
+<div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i12 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t12 }}</span></div>
+</section>
+
+<section data-label="14 Два на два" data-screen-label="14" data-speaker-notes="6а — ГЕРОЙСКИЙ КАДР. Камера origin (820,470), scale 1.2. Сетка 2×2, шаг 3.4; x = архитектура, y = данные Shorts. Высота: 1 клетка = 0.00124 AUC. Порядок наложения: (0,0) → (1,0) → (0,1) → (1,1) → призрак. [1] только данные +0.0002 [2] только архитектура +0.0015 [3] оба +0.0062 [4] пунктирный призрак +0.0017 (сумма) и подпись. Метрика — AUC клика на Главной от 0.7557." style="background:#000;overflow:hidden;">
+  {{ sc13 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s13 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i13 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t13 }}</span></div>
+</section>
+
+<section data-label="15 Над водой" data-screen-label="15" data-speaker-notes="6г — РИФМА со слайдом 7: та же камера (760,470), та же вода, та же первая пара. [1] без дообучения — под воду [2] выровненный — над водой [3] выровненный + масштабированный [4] побочно: Главная +0.09%, просмотр 0.00%. Числа — только у текущей пары." style="background:#000;overflow:hidden;">
+  {{ sc14 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s14 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i14 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t14 }}</span></div>
+</section>
+
+<section data-label="16 Эпилог" data-screen-label="16" data-speaker-notes="ЭПИЛОГ — тот же общий план, что на слайде 2, но всё подключено: три ленты, новые головы Shorts на крыше, signal ко всем студентам. [1] подписи площадок сменяются: длинные видео · клипы · посты (crossfade) [2] затемнение в night и финальный интертитр." style="background:#000;overflow:hidden;">
+  {{ sc15 }}
+  
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s15 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i15 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t15 }}</span></div>
+</section>
+
+<section data-label="17 Код" data-screen-label="17" data-speaker-notes="ПРИЛОЖЕНИЕ. Псевдокод PyTorch; каждый шаг подсвечивает строки и соответствующую часть мини-башни справа. Manim: Code(...) + SurroundingRectangle по группам строк; справа тот же iso-компонент tower()." style="background:#000;overflow:hidden;">
+  {{ sc16 }}
+  
+  <div style="position:absolute;left:104px;top:150px;width:1160px;display:flex;flex-direction:column;font-family:'JetBrains Mono',monospace;font-size:26px;line-height:1.3;">
+    <sc-for list="{{ codeLines }}" as="ln" hint-placeholder-count="21">
+      <div style="display:flex;min-height:35px;align-items:center;padding:0 16px;white-space:pre;background:{{ ln.bg }};color:{{ ln.fg }};transition:background 0.8s, color 0.8s;"><span>{{ ln.code }}</span><span style="color:{{ ln.cm }};transition:color 0.8s;">{{ ln.comment }}</span></div>
+    </sc-for>
+  </div>
+<div style="position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;"><div></div><span>{{ stp.s16 }}</span></div>
+  <div style="position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;"><span style="flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;">{{ nar.i16 }}</span><span style="font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;">{{ nar.t16 }}</span></div>
+</section>
+
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { st: {} };
+  MAX = [0, 3, 0, 3, 5, 3, 3, 0, 3, 5, 5, 3, 0, 4, 4, 2, 6];
+
+  deck = () => document.querySelector('deck-stage');
+  cur = () => { const d = this.deck(); return d && typeof d.index === 'number' ? d.index : 0; };
+  stepOf = i => this.state.st[i] || 0;
+  setStep = (i, v) => this.setState(p => ({ st: { ...p.st, [i]: v } }));
+  adv = () => {
+    const i = this.cur(), s = this.stepOf(i);
+    if (s < (this.MAX[i] || 0)) this.setStep(i, s + 1);
+    else { const d = this.deck(); if (d && d.goTo) d.goTo(i + 1); }
+  };
+  onKey = e => {
+    const t = e.composedPath ? e.composedPath()[0] : e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName || ''))) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const i = this.cur(), s = this.stepOf(i), m = this.MAX[i] || 0;
+    const next = ['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Spacebar'].includes(e.key);
+    const prev = ['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key);
+    if (next && s < m) { e.preventDefault(); e.stopImmediatePropagation(); this.setStep(i, s + 1); }
+    else if (prev && s > 0) { e.preventDefault(); e.stopImmediatePropagation(); this.setStep(i, s - 1); }
+  };
+  onSlide = e => {
+    const d = e.detail || {}; const i = d.index, p = d.previousIndex;
+    if (i == null || p == null || p < 0 || i === p) return;
+    this.setStep(i, i < p ? (this.MAX[i] || 0) : 0);
+  };
+  onPrint = () => this.setState({ st: Object.fromEntries(this.MAX.map((m, i) => [i, m])) });
+  componentDidMount() {
+    window.addEventListener('keydown', this.onKey, true);
+    document.addEventListener('slidechange', this.onSlide);
+    window.addEventListener('beforeprint', this.onPrint);
+      }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKey, true);
+    document.removeEventListener('slidechange', this.onSlide);
+    window.removeEventListener('beforeprint', this.onPrint);
+  }
+
+  L = (() => {
+    const h = React.createElement;
+    const K = { paper: '#FFFFFF', ink: '#000000', night: '#000000', graphite: '#888888', stone: '#BBBBBB', home: '#F0AC5F', watch: '#58C4DD', shorts: '#FC6255', signal: '#5CD0B3' };
+    const E = 'cubic-bezier(.65,0,.35,1)';
+    const S = 45, CX = S * 0.8660254, CY = S * 0.5;
+    const P = (x, y, z = 0) => [(x - y) * CX, (x + y) * CY - z * S];
+    const MONO = "'Computer Modern Serif', 'PT Serif', serif", SERIF = "'Computer Modern Serif', 'PT Serif', serif";
+    const shade = (hex, f) => { const n = parseInt(hex.slice(1), 16); const c = v => Math.max(0, Math.min(255, Math.round(v * f))).toString(16).padStart(2, '0'); return '#' + c((n >> 16) & 255) + c((n >> 8) & 255) + c(n & 255); };
+    const f1 = v => Math.round(v * 10) / 10;
+    const pd = (pts, close = true) => 'M' + pts.map(p => f1(p[0]) + ' ' + f1(p[1])).join(' L ') + (close ? ' Z' : '');
+    const tr = (dl = 0, du = 1.6) => ['d', 'fill', 'fill-opacity', 'opacity', 'transform', 'stroke-width', 'stroke'].map(p => p + ' ' + du + 's ' + E + ' ' + dl + 's').join(', ');
+    const face = (k, pts, fill, o) => { const d = pd(pts); return h('path', { key: k, d, style: { d: 'path("' + d + '")', fill, fillOpacity: o.empty ? 0 : (o.fo ?? 1), stroke: o.stroke || K.paper, strokeWidth: o.sw ?? 2.2, strokeDasharray: o.empty ? '6 5' : 'none', strokeLinejoin: 'round', transition: tr(o.delay || 0, o.dur || 1.6) } }); };
+    const box = (k, o) => {
+      const x = o.x, y = o.y, z = o.z || 0, w = o.w, d = o.d, hh = Math.max(o.h, 0.001), c = o.c;
+      const t = [P(x, y, z + hh), P(x + w, y, z + hh), P(x + w, y + d, z + hh), P(x, y + d, z + hh)];
+      const l = [P(x, y + d, z + hh), P(x + w, y + d, z + hh), P(x + w, y + d, z), P(x, y + d, z)];
+      const r = [P(x + w, y, z + hh), P(x + w, y + d, z + hh), P(x + w, y + d, z), P(x + w, y, z)];
+      const oo = { ...o, stroke: o.stroke || c, sw: o.sw ?? 2.2 };
+      return h('g', { key: k, style: { opacity: o.op ?? 1, transition: tr(o.delay || 0, o.dur || 1.6), animation: o.anim || 'none' } }, face('l', l, shade(c, 0.34), oo), face('r', r, shade(c, 0.22), oo), face('t', t, shade(c, 0.5), oo));
+    };
+    const txt = (k, x, y, s, o = {}) => y >= 990 ? null : h('text', { key: k, x: f1(x), y: f1(y), style: { fontFamily: o.serif ? SERIF : MONO, fontSize: (o.size || 30) * 1.08, fill: o.fill || K.paper, textAnchor: o.anchor || 'start', opacity: o.op ?? 1, fontStyle: o.italic ? 'italic' : 'normal', transition: tr(o.delay || 0, 1.2) } }, s);
+    const lab = (k, w, dx, dy, s, o) => { const p = P(w[0], w[1], w[2] || 0); return txt(k, p[0] + dx, p[1] + dy, s, o); };
+    const ln = (k, pts, o = {}) => { const d = pd(pts, false); return h('path', { key: k, d, style: { d: 'path("' + d + '")', fill: 'none', stroke: o.c || K.paper, strokeWidth: o.w ?? 3, strokeDasharray: o.dash || 'none', strokeLinecap: o.cap || 'round', opacity: o.op ?? 1, animation: o.anim || 'none', transition: tr(o.delay || 0, o.dur || 1.4) } }); };
+    const wl = (k, a, b, o) => ln(k, [P(a[0], a[1], a[2] || 0), P(b[0], b[1], b[2] || 0)], o);
+    const fig = (k, w, o = {}) => {
+      const p = P(w[0], w[1], w[2] || 0), rx = 15, ry = 8.7, bh = 34;
+      return h('g', { key: k, style: { transform: 'translate(' + f1(p[0]) + 'px,' + f1(p[1]) + 'px)', opacity: o.op ?? 1, transition: tr(o.delay || 0, o.dur || 1.8) } },
+        h('path', { d: `M${-rx} 0 L${-rx} ${-bh} A${rx} ${ry} 0 0 1 ${rx} ${-bh} L${rx} 0 A${rx} ${ry} 0 0 1 ${-rx} 0 Z`, fill: '#2A2A2A', stroke: K.paper, strokeWidth: 2.2 }),
+        h('ellipse', { cx: 0, cy: -bh, rx, ry, fill: '#444444', stroke: K.paper, strokeWidth: 2.2 }),
+        h('circle', { cx: 0, cy: -bh - 20, r: 13, fill: '#333333', stroke: K.paper, strokeWidth: 2.2 }));
+    };
+    const qpts = (a, c, b, n = 24) => Array.from({ length: n + 1 }, (_, i) => { const t = i / n, u = 1 - t; return [u * u * a[0] + 2 * u * t * c[0] + t * t * b[0], u * u * a[1] + 2 * u * t * c[1] + t * t * b[1]]; });
+    const arc = (a, b, lift) => { const pa = P(a[0], a[1], a[2] || 0), pb = P(b[0], b[1], b[2] || 0); return qpts(pa, [(pa[0] + pb[0]) / 2, Math.min(pa[1], pb[1]) - lift], pb); };
+    const wp = pts => pts.map(q => P(q[0], q[1], q[2] || 0));
+    const flow = (k, pts, n, dur, draw, o = {}) => {
+      const d = pd(pts, false);
+      return h('g', { key: k, style: { opacity: o.op ?? 1, transition: tr(o.delay || 0, 1.2) } }, ...Array.from({ length: n }, (_, i) => {
+        const b = (-(i * dur / n) - 0.01).toFixed(2) + 's';
+        return h('g', { key: i }, draw(i),
+          h('animateMotion', { dur: dur + 's', begin: b, repeatCount: 'indefinite', path: d }),
+          h('animate', { attributeName: 'opacity', values: '0;1;1;0', keyTimes: '0;0.12;0.88;1', dur: dur + 's', begin: b, repeatCount: 'indefinite' }));
+      }));
+    };
+    const cube = (c, s = 0.3) => () => box('c', { x: -s / 2, y: -s / 2, z: 0, w: s, d: s, h: s, c, sw: 1 });
+    const dots = (s, n) => false ? h('g', { key: 'dots' }, ...Array.from({ length: n }, (_, i) => h('circle', { key: i, cx: 1800 - (n - 1 - i) * 26, cy: 1012, r: 6, style: { fill: i < s ? K.ink : K.paper, stroke: K.ink, strokeWidth: 1.5, transition: 'fill .6s' } }))) : null;
+    const scene = (s, n, cam, kids, over) => h('svg', { viewBox: '0 0 1920 1080', width: 1920, height: 1080, style: { position: 'absolute', left: 0, top: 0, display: 'block', cursor: n ? 'pointer' : 'default' }, onClick: () => this.adv() },
+      h('g', { transform: 'translate(173 72) scale(0.82)' }, h('g', { style: { transform: cam, transition: 'transform 2.2s ' + E } }, ...kids), ...(over || [])));
+    const at = (k, ox, oy, kids) => h('g', { key: k, transform: `translate(${ox} ${oy})` }, ...kids);
+    const TL = [[0, .5], [.65, .6], [1.4, .9], [2.45, .9], [3.5, .9], [4.55, .6]];
+    const tower = (k, x, y, w, vis, o = {}) => { const kk = o.k || 1; return TL.map(([z, hh], i) => box(k + i, { x, y, w, d: w, z: vis ? z * kk : 0, h: vis ? hh * kk : .001, c: (o.cols && o.cols[i]) || o.c || K.graphite, op: vis ? (o.ops ? o.ops[i] : 1) : 0, delay: vis ? (o.d0 || 0) + i * .2 : 0, dur: 1.4 })); };
+    const student = (k, x, y, vis, o = {}) => { const d0 = o.d0 || 0, c = o.c || K.stone; return [
+      box(k + 'a', { x, y, w: 1, d: 1, z: 0, h: vis ? .7 : .001, c, op: vis ? 1 : 0, delay: vis ? d0 : 0 }),
+      box(k + 'b', { x, y, w: 1, d: 1, z: vis ? .8 : 0, h: vis ? .7 : .001, c, op: vis ? 1 : 0, delay: vis ? d0 + .2 : 0 }),
+      box(k + 'c', { x: x + .3, y: y + .3, w: .4, d: .4, z: vis ? 1.5 : 0, h: vis ? .45 : .001, c: o.hc || c, op: vis ? 1 : 0, delay: vis ? d0 + .4 : 0 })]; };
+    return { h, K, E, S, CX, CY, P, MONO, SERIF, shade, pd, face, box, txt, lab, ln, wl, fig, arc, wp, flow, cube, scene, at, tower, student };
+  })();
+
+  world = (s, mode) => {
+    const { h, K, P, box, lab, txt, flow, cube, arc, wp, scene, tower, student } = this.L;
+    const epi = mode === 'epi';
+    const plat = true, tw = epi || s >= 1, st = epi || s >= 2, conn = epi || s >= 3, sh = epi, alt = epi && s >= 1, dark = epi && s >= 2;
+    const rise = (k, o) => box(k, { ...o, z: plat ? (o.z || 0) : 0, h: plat ? o.h : .001, op: plat ? 1 : 0, delay: plat ? (o.delay || 0) : 0 });
+    const k = [];
+    k.push(box('rh', { x: 3, y: 8.2, w: conn ? 4 : .001, d: .6, h: .05, c: K.home, op: conn ? 1 : 0, sw: 1 }));
+    k.push(box('rw', { x: 8.2, y: 3, w: .6, d: conn ? 4 : .001, h: .05, c: K.watch, op: conn ? 1 : 0, sw: 1 }));
+    k.push(box('rsa', { x: 12.5, y: sh ? 8.8 : 11.999, w: .6, d: sh ? 3.2 : .001, h: .05, c: K.shorts, op: sh ? 1 : 0, sw: 1 }));
+    k.push(box('rsb', { x: sh ? 10 : 13.1, y: 8.2, w: sh ? 3.1 : .001, d: .6, h: .05, c: K.shorts, op: sh ? 1 : 0, sw: 1, delay: .4 }));
+    k.push(flow('fh', wp([[3.2, 8.5, .05], [7, 8.5, .05]]), 3, 3.6, cube(K.home, .34), { op: conn ? 1 : 0, delay: conn ? 1.2 : 0 }));
+    k.push(flow('fw', wp([[8.5, 3.2, .05], [8.5, 7, .05]]), 3, 3.6, cube(K.watch, .34), { op: conn ? 1 : 0, delay: conn ? 1.2 : 0 }));
+    k.push(flow('fs', wp([[12.8, 12, .05], [12.8, 8.5, .05], [10, 8.5, .05]]), 4, 5, cube(K.shorts, .34), { op: sh ? 1 : 0 }));
+    k.push(rise('hp', { x: -2, y: 7, w: 5, d: 5, h: .3, c: K.stone }));
+    [7.3, 8.5, 9.7, 10.9].forEach((y, j) => [-1.7, .6].forEach((x, i) => k.push(rise('ht' + j + i, { x, y, w: 2.1, d: .9, z: .3, h: .12, c: K.home, delay: .3 + (j * 2 + i) * .06 }))));
+    k.push(rise('wp', { x: 7, y: -2, w: 5, d: 5, h: .3, c: K.stone }));
+    k.push(rise('ws', { x: 7.3, y: -1.7, w: 3.1, d: 4.4, z: .3, h: .15, c: K.watch, delay: .3 }));
+    [-1.7, -.2, 1.3].forEach((y, i) => k.push(rise('wt' + i, { x: 10.8, y, w: .9, d: 1.2, z: .3, h: .12, c: K.watch, delay: .4 + i * .08 })));
+    k.push(...student('sh_', 3.4, 11, st), ...student('sw_', 11, 3.4, st, { d0: .2 }));
+    k.push(...tower('t', 7, 7, 3, tw));
+    const HP = [[0, 0, K.home], [1, 0, K.home], [0, 1, K.watch], [2, 0, K.watch], [2, 1, K.shorts, 1], [0, 2, K.shorts, 1], [1, 2, K.shorts, 1], [2, 2, K.shorts, 1]];
+    HP.forEach(([i, j, c, nw], n) => { const v = tw && (!nw || sh); k.push(box('th' + n, { x: 7.25 + i * .95, y: 7.25 + j * .95, w: .6, d: .6, z: 5.15, h: v ? .9 : .001, c, op: v ? 1 : 0, delay: v ? 1.4 + n * .08 : 0 })); });
+    k.push(flow('sgh', arc([8.5, 8.5, 6.2], [3.9, 11.5, 2], 150), 4, 3.4, cube(K.signal, .28), { op: conn ? 1 : 0, delay: conn ? 1.6 : 0 }));
+    k.push(flow('sgw', arc([8.5, 8.5, 6.2], [11.5, 3.9, 2], 150), 4, 3.4, cube(K.signal, .28), { op: conn ? 1 : 0, delay: conn ? 1.6 : 0 }));
+    k.push(flow('sgs', arc([8.5, 8.5, 6.2], [17.1, 13.5, 2], 180), 4, 3.8, cube(K.signal, .28), { op: sh ? 1 : 0 }));
+    k.push(rise('sp', { x: 12, y: 12, w: 4, d: 4, h: .3, c: K.stone }));
+    k.push(rise('sc', { x: 13.4, y: 12.1, w: 1.2, d: 3.8, z: .3, h: .06, c: K.graphite, delay: .3 }));
+    [12.5, 13.3, 14.1, 14.9, 15.6].forEach((y, i) => k.push(rise('spl' + i, { x: 13.5, y, w: 1, d: .08, z: .36, h: .9, c: sh ? K.shorts : K.stone, delay: .4 + i * .08 })));
+    k.push(...student('ss_', 16.6, 13, st, { d0: .4, hc: sh ? K.shorts : K.stone }));
+    const L1 = { serif: true, italic: true, size: 36 };
+    k.push(lab('lh', [-2, 12], -16, 34, 'Homepage', { ...L1, anchor: 'end', op: plat && !alt ? 1 : 0 }), lab('lh2', [-2, 12], -16, 34, 'длинные видео', { ...L1, anchor: 'end', op: alt ? 1 : 0, delay: .6 }));
+    k.push(lab('lw', [12, 3], 34, 44, 'Watch Page', { ...L1, op: plat && !alt ? 1 : 0 }), lab('lw2', [12, 3], 34, 44, 'клипы', { ...L1, op: alt ? 1 : 0, delay: .6 }));
+    k.push(lab('ls', [12, 16], -24, 60, 'Shorts', { ...L1, anchor: 'end', op: plat && !alt ? 1 : 0 }), lab('ls2', [12, 16], -24, 60, 'посты', { ...L1, anchor: 'end', op: alt ? 1 : 0, delay: .6 }));
+    k.push(lab('lt', [10, 7, 6.2], 24, -30, 'учитель', { ...L1, anchor: 'start', op: tw ? 1 : 0, delay: tw ? 1.2 : 0 })); k.push(lab('ltx', [7, 10, 2.4], -30, 10, '', { ...L1, op: tw ? 1 : 0, delay: tw ? 1.2 : 0 }));
+    k.push(lab('lnc', [12, 16], -24, 104, 'не подключено', { anchor: 'end', size: 28, op: !epi && s >= 3 ? 1 : 0, delay: 1 }));
+    const over = [h('rect', { key: 'nt', x: 0, y: 0, width: 1920, height: 1080, style: { fill: K.night, opacity: dark ? 1 : 0, transition: 'opacity 2.4s ' + this.L.E, pointerEvents: 'none' } }),
+      txt('ntt', 160, 640, 'Тот же разрыв?', { serif: true, size: 64, fill: K.paper, op: dark ? 1 : 0, delay: dark ? 1.6 : 0 })];
+    return scene(s, epi ? 2 : 4, 'translate(990px,150px) scale(0.86)', k, epi ? over : []);
+  };
+
+  choice = s => {
+    const { K, P, box, lab, txt, fig, flow, scene, at } = this.L;
+    const L = [];
+    L.push(box('pl', { x: 0, y: 0, w: 5.4, d: 4.4, h: .3, c: K.stone }));
+    [.3, 1.65, 3].forEach((y, j) => [.3, 2.95].forEach((x, i) => { const ch = i === 1 && j === 1; L.push(box('t' + j + i, { x, y, w: 2.15, d: .9, z: ch && s >= 1 ? .9 : .3, h: .12, c: K.home, dur: 2 })); }));
+    L.push(fig('f', s >= 2 ? [4.02, 2.1, 1.02] : [2.7, 5.9, 0], { dur: 2.2 }));
+    L.push(box('cmpL', { x: 0, y: 8.5, w: 4.4, d: .9, h: .12, c: K.home, op: s >= 3 ? 1 : 0 }));
+    L.push(lab('cmpLt', [4.4, 9.4], 24, 36, '15–20 мин', { size: 40, op: s >= 3 ? 1 : 0, delay: .3 }));
+    const R = [];
+    R.push(box('cv', { x: 0, y: -12, w: 1.4, d: 22, h: .15, c: K.graphite }));
+    R.push(flow('pl', [P(.1, -12, .15), P(.1, 10, .15)], 6, 11, () => box('p', { x: 0, y: 0, w: 1.2, d: .08, h: 1.1, c: K.shorts, sw: 1.2 })));
+    R.push(fig('f', [.7, 1.2, .15]));
+    R.push(box('cmpR', { x: 4, y: 7.5, w: .22, d: .9, h: .12, c: K.shorts, op: s >= 3 ? 1 : 0 }));
+    R.push(lab('cmpRt', [4.22, 8.4], 24, 36, '≈1 мин', { size: 40, op: s >= 3 ? 1 : 0, delay: .3 }));
+    return this.L.scene(s, 3, 'translate(0px,0px) scale(1)', [
+      at('L', 470, 360, L), at('R', 1330, 330, R),
+      txt('tl', 120, 250, 'Выбор.', { serif: true, size: 64 }),
+      txt('tr', 1020, 250, 'Поток.', { serif: true, size: 64 })]);
+  };
+
+  pipes = s => {
+    const { h, K, box, txt, scene, at, E } = this.L;
+    const R = [
+      { a: 'клик', as: 'Homepage', av: .044, ac: K.home, b: 'позитив', bv: .435, r: '×9.9' },
+      { a: 'досмотр', as: 'Watch Page', av: .768, ac: K.watch, b: 'досмотр', bv: .925, r: '×1.2', eq: 1 },
+      { a: 'потребление', as: 'Homepage', av: 415.8, ac: K.home, b: 'потребление', bv: 19.5, r: '÷21' },
+      { a: 'доля досмотра', as: 'Homepage', av: .692, ac: K.home, b: 'доля досмотра', bv: .711, r: '≈1.0', eq: 1 }];
+    const k = [];
+    k.push(txt('h1', 700, 150, 'учитель', { anchor: 'middle', size: 34, fill: K.stone }));
+    k.push(txt('h2', 1220, 150, 'студент · Shorts', { anchor: 'middle', size: 34, fill: K.shorts }));
+    R.forEach((r, i) => {
+      const on = s >= i + 1, fin = s >= 5, dim = fin ? !r.eq : (on && s > i + 1);
+      const op = !on ? 0 : dim ? .35 : 1, y = 330 + i * 200, mx = Math.max(r.av, r.bv);
+      const sa = Math.max(.14, 1.5 * r.av / mx), sb = Math.max(.14, 1.5 * r.bv / mx);
+      const cube = (key, sz, c, dl) => at(key, 0, 0, [box(key, { x: -sz / 2, y: -sz / 2, w: on ? sz : .001, d: on ? sz : .001, h: on ? sz : .001, c, delay: dl, dur: 1.4 })]);
+      const g = [
+        txt('an', 520, -44, r.a, { anchor: 'end', size: 34 }),
+        txt('as', 520, -2, r.as, { anchor: 'end', size: 26, fill: K.stone, italic: true }),
+        h('g', { key: 'ca', transform: 'translate(700 30)' }, cube('ca', sa, r.ac, 0)),
+        txt('av', 700, 112, String(r.av), { anchor: 'middle', size: 32, fill: r.ac }),
+        h('path', { key: 'ar', d: 'M 860 -20 L 1060 -20', style: { fill: 'none', stroke: K.paper, strokeWidth: 3, strokeDasharray: 200, strokeDashoffset: on ? 0 : 200, transition: 'stroke-dashoffset 1s ' + E + ' .5s' } }),
+        h('path', { key: 'ah', d: 'M 1046 -30 L 1064 -20 L 1046 -10 Z', style: { fill: K.paper, opacity: on ? 1 : 0, transition: 'opacity .3s 1.4s' } }),
+        txt('rt', 960, -40, r.r, { anchor: 'middle', size: 34, fill: r.eq ? K.signal : K.shorts, op: on ? 1 : 0, delay: 1.6 }),
+        h('g', { key: 'cb', transform: 'translate(1220 30)' }, cube('cb', sb, K.shorts, .9)),
+        txt('bv', 1220, 112, String(r.bv), { anchor: 'middle', size: 32, fill: K.shorts }),
+        txt('bn', 1400, -44, r.b, { size: 34 }),
+        txt('bs', 1400, -2, 'Shorts', { size: 26, fill: K.stone, italic: true }),
+        txt('eq', 1700, -20, r.eq ? '≈ совпало' : '', { size: 34, fill: K.signal, op: fin ? 1 : 0, delay: .4 })];
+      k.push(h('g', { key: 'row' + i, transform: 'translate(0 ' + y + ')', style: { opacity: op, transition: 'opacity 1s ' + E } }, ...g));
+    });
+    return scene(s, 5, 'translate(0px,0px) scale(1)', k);
+  };
+
+  bars = s => {
+    const { K, P, box, lab, txt, scene, at, h, shade } = this.L;
+    const A = [];
+    const D = [['досмотр', .925, .537, 1], ['негатив', .297, .148, 1], ['позитив', .435, .511, 0], ['доля досмотра', .711, .754, 0]];
+    D.forEach(([n, f, b, main], i) => {
+      const x = i * 2.7, y0 = -i * 2.7, w = main ? 1 : .7, v = main ? true : s >= 1, dl = main ? i * .25 : (i - 2) * .25;
+      A.push(box('f' + i, { x, y: y0, w, d: w, h: v ? f * 7 : .001, c: K.shorts, delay: dl, dur: 1.8 }));
+      A.push(box('b' + i, { x: x + w + .15, y: y0, w, d: w, h: v ? b * 7 : .001, c: K.watch, delay: dl + .15, dur: 1.8 }));
+      if (main) { A.push(lab('fv' + i, [x + w / 2, y0 + w / 2, f * 7], 0, -18, String(f), { anchor: 'middle', size: 32, op: v ? 1 : 0, delay: 1.2 })); A.push(lab('bv' + i, [x + w * 1.5 + .15, y0 + w / 2, b * 7], 0, -18, String(b), { anchor: 'middle', size: 32, op: v ? 1 : 0, delay: 1.35 })); }
+      A.push(lab('n' + i, [x + w + .07, y0 + w, 0], -10, 50, n, { anchor: 'middle', size: 28, op: v ? 1 : 0 }));
+    });
+    const B = [];
+    const cellsT = new Set([7, 23, 48, 61, 84, 96]);
+    const plate = (key, ox, oy, base, cell, lit) => {
+      B.push(box(key + 'p', { x: ox - .2, y: oy - .2, w: 5.8, d: 5.8, h: .2, c: base, op: s >= 2 ? 1 : 0 }));
+      for (let j = 0; j < 10; j++) for (let i = 0; i < 10; i++) { const n = j * 10 + i, on = s >= 3 && lit(n);
+        B.push(box(key + n, { x: ox + i * .56, y: oy + j * .56, w: .5, d: .5, z: .2, h: on ? .3 : .12, c: on ? K.shorts : cell, op: s >= 2 ? 1 : 0, delay: on ? n * .012 : 0, dur: 1.2, sw: 1 })); }
+    };
+    plate('T', 0, 0, K.graphite, '#5B5B61', n => cellsT.has(n));
+    plate('U', 7.5, -7.5, shade(K.stone, .85), K.stone, n => ((n * 37) % 100) >= 21);
+    B.push(lab('tl', [2.8, 5.6], -40, 80, 'признаки учителя', { anchor: 'middle', size: 30, op: s >= 2 ? 1 : 0 }));
+    B.push(lab('ul', [10.3, -1.9], -40, 80, 'признаки студента', { anchor: 'middle', size: 30, op: s >= 2 ? 1 : 0 }));
+    B.push(lab('tv', [2.8, 5.6], -40, 150, '6.2%', { anchor: 'middle', size: 64, fill: K.shorts, op: s >= 3 ? 1 : 0, delay: 1 }));
+    B.push(lab('uv', [10.3, -1.9], -40, 150, '79.0%', { anchor: 'middle', size: 64, fill: K.shorts, op: s >= 3 ? 1 : 0, delay: 1 }));
+    return scene(s, 4, s >= 2 ? 'translate(-1920px,0px) scale(1)' : 'translate(0px,0px) scale(1)', [
+      at('A', 520, 760, A), at('B', 1920 + 470, 330, B),
+      h('rect', { key: 'lg1', x: 120, y: 190, width: 28, height: 28, fill: K.shorts, stroke: K.ink, strokeWidth: 1.5 }), txt('lg1t', 164, 214, 'лента', { size: 30 }),
+      h('rect', { key: 'lg2', x: 320, y: 190, width: 28, height: 28, fill: K.watch, stroke: K.ink, strokeWidth: 1.5 }), txt('lg2t', 364, 214, 'браузинг', { size: 30 }),
+      txt('ca', 120, 1000, 'Те же ролики. Другое поведение.', { serif: true, size: 48, op: s >= 1 ? 1 : 0 }),
+      txt('cb', 1920 + 120, 1000, 'Учитель почти слеп здесь.', { serif: true, size: 48, op: s >= 3 ? 1 : 0, delay: 1.4 })]);
+  };
+
+  water = (s, mode) => {
+    const { h, K, P, box, lab, txt, flow, cube, arc, scene, at, pd, student } = this.L;
+    const B = mode === 'B';
+    const SL = [{ e: -.12, c: -.46, n: 'без дообучения' }, { e: .16, c: .37, n: 'выровненный' }, { e: .27, c: .82, n: 'выровн. + масшт.' }];
+    const X = [0, 6, 12];
+    const shown = i => B ? s >= i + 1 : (i === 0 && s >= 2);
+    const numOn = i => B ? (i === Math.min(s, 3) - 1) : shown(i);
+    const waterOn = B || s >= 1;
+    const neg = [], pos = [], labs = [];
+    SL.forEach((p, i) => {
+      [['e', p.e, K.shorts, 0], ['c', p.c, K.graphite, 1.4]].forEach(([t, v, c, dx]) => {
+        const hh = Math.abs(v) * 5, on = shown(i), x = X[i] + dx;
+        const b = box(t + i, { x, y: 2.4, w: 1, d: 1, z: on && v < 0 ? -hh : 0, h: on ? hh : .001, c, op: on ? 1 : 0, dur: 2.2, delay: t === 'c' ? .25 : 0 });
+        (v < 0 ? neg : pos).push(b);
+        const lbl = (v > 0 ? '+' : '−') + Math.abs(v).toFixed(2) + '%';
+        const side = t === 'e' ? { anchor: 'end', dx: -14, w: [x, 3.4] } : { anchor: 'start', dx: 14, w: [x + 1, 2.4] };
+        labs.push(lab('v' + t + i, [side.w[0], side.w[1], v < 0 ? 0 : hh], side.dx, v < 0 ? 40 : 8, lbl, { anchor: side.anchor, size: 34, op: on && numOn(i) ? 1 : 0, delay: 1.4 }));
+      });
+      labs.push(lab('n' + i, [X[i] + 1.15, 9], 0, 56, p.n, { anchor: 'middle', size: 28, op: shown(i) ? 1 : 0 }));
+    });
+    const wq = [P(-1.5, -.5), P(15.5, -.5), P(15.5, 9), P(-1.5, 9)];
+    const k = [...neg,
+      h('path', { key: 'wat', d: pd(wq), style: { fill: K.watch, fillOpacity: .22, stroke: K.watch, strokeWidth: 2.2, opacity: waterOn ? 1 : 0, transition: 'opacity 1.6s ' + this.L.E } }),
+      lab('zero', [15.5, -.5], 24, 10, '0% · контроль', { size: 30, fill: K.watch, op: waterOn ? 1 : 0, delay: .8 }),
+      ...pos, ...student('st', 17, -3.4, true),
+      flow('sg', arc([9, -15, 9], [17.5, -2.9, 2], 60), 4, 3.6, cube(K.signal, .28)),
+      ...labs,
+      lab('off', [18, -3.4, 2], 30, -10, 'AUC 0.7706 → 0.7708', { size: 34, op: !B && s === 0 ? 1 : 0 }),
+      ];
+    const over = [
+      h('rect', { key: 'lg1', x: 120, y: 190, width: 28, height: 28, fill: K.shorts, stroke: K.ink, strokeWidth: 1.5 }), txt('lg1t', 164, 214, 'вовлечённость', { size: 30 }),
+      h('rect', { key: 'lg2', x: 470, y: 190, width: 28, height: 28, fill: K.graphite, stroke: K.ink, strokeWidth: 1.5 }), txt('lg2t', 514, 214, 'потребление', { size: 30 }),
+      txt('side', 120, 280, 'Главная +0.09% · Watch Page 0.00%', { size: 30, op: B && s >= 4 ? 1 : 0 }),
+      txt('cap', 120, 1000, B ? 'Та же вода. Обратный исход.' : 'Ноль офлайн. Минус онлайн.', { serif: true, size: 48, op: (B ? s >= 3 : s >= 3) ? 1 : 0, delay: .6 })];
+    return scene(s, B ? 4 : 3, 'translate(700px,380px) scale(0.86)', k, over);
+  };
+
+  beam = s => {
+    const { h, K, P, box, lab, txt, flow, cube, scene, at } = this.L;
+    const C = [[0, 5, K.graphite], [5.15, 2.4, K.home], [7.7, 2.4, K.watch], [10.25, 2.4, K.shorts]];
+    const k = [];
+    [1, 2, 3].forEach(i => { const cx = C[i][0] + 1.2; k.push(box('r' + i, { x: cx - .5, y: 1.8, w: 1, d: 20, h: .04, c: C[i][2], sw: 1 })); });
+    [1, 2, 3].forEach(i => { const cx = C[i][0] + 1.2; k.push(flow('f' + i, [P(cx, 20, .04), P(cx, 2.2, .04)], 4, 6, cube(C[i][2], .4))); });
+    C.forEach(([x, w, c], i) => { const lit = s === 0 ? null : (i === 0 || i === s);
+      k.push(box('c' + i, { x, y: 0, w, d: 1.8, h: 1.1, c: s === 0 ? K.stone : (lit ? c : K.stone), empty: s > 0 && !lit, dur: 1.2 })); });
+    k.push(box('tw', { x: 0, y: 0, w: 12.65, d: 1.8, z: 1.3, h: 4.6, c: K.graphite }));
+    [1, 2, 3].forEach(i => { const cx = C[i][0] + 1.2; k.push(box('s' + i, { x: cx - .45, y: s >= i ? 2.3 : 7.5, w: .9, d: .9, z: .04, h: .9, c: C[i][2], op: s === i ? 1 : 0, dur: 1.8 })); });
+    const F = [['x = [ v_common', K.paper, 1], ['  ‖ v_Home', K.home, s === 0 || s === 1], ['  ‖ v_Watch', K.watch, s === 0 || s === 2], ['  ‖ v_Shorts ]', K.shorts, s === 0 || s === 3]];
+    const over = F.map(([t, c, on], i) => h('text', { key: 'fm' + i, x: 1400, y: 480 + i * 60, style: { fontFamily: this.L.MONO, fontSize: 40, fill: on ? c : '#555555', whiteSpace: 'pre', transition: 'fill 1s' } }, on || i === 0 ? t : t.replace(/v_\w+/, '0')));
+    over.push(txt('cap', 1400, 820, s === 0 ? 'Три ленты. Равные доли.' : 'Чужие отсеки — нули.', { serif: true, size: 48 }));
+    return scene(s, 3, 'translate(800px,420px) scale(1.1)', k, over);
+  };
+
+  valve = s => {
+    const { h, K, P, box, ln, wl, lab, txt, scene, tower, shade } = this.L;
+    const kk = 1.15, roof = 5.15 * kk, hH = 1.1;
+    const HD = [[0, 0, K.home], [1, 0, K.home], [0, 1, K.watch], [2, 0, K.watch], [1, 1, null], [2, 1, K.shorts, 1, 1], [0, 2, K.shorts, 1, 1], [1, 2, K.shorts, 1], [2, 2, K.shorts, 1]];
+    const T = [...tower('t', 0, 0, 4, true, { k: kk })];
+    const gr = [];
+    HD.forEach(([i, j, c, nw, noisy], n) => {
+      if (!c) return;
+      const x = .25 + i * 1.3, y = .25 + j * 1.3, v = !nw || s >= 1, lit = !nw || s >= 3;
+      T.push(box('h' + n, { x, y, w: .8, d: .8, z: roof, h: v ? hH : .001, c: lit ? c : shade(K.graphite, .8), op: v ? 1 : 0, delay: nw ? n * .08 : 0, anim: noisy && s === 4 ? 'flick 1.4s ease-in-out infinite' : 'none' }));
+      const cx = x + .4, cy = y + .4, g = s >= 4, full = !noisy || s >= 5;
+      gr.push(wl('g' + n, [cx, cy, roof + hH], [cx, cy, full ? 0.05 : roof], { c: K.paper, w: 3, dash: '10 8', anim: 'gdash 1.1s linear infinite', op: g ? 1 : 0, dur: 1.2 }));
+      if (noisy) {
+        const ring = Array.from({ length: 29 }, (_, q) => { const t = q / 28 * 2 * Math.PI; return P(cx + .62 * Math.cos(t), cy + .62 * Math.sin(t), roof + .02); });
+        const vo = s === 4 ? 1 : 0;
+        gr.push(ln('vr' + n, ring, { w: 4, op: vo, dur: 1 }), wl('vs' + n, [cx + .62, cy, roof], [cx + .62, cy, roof + .7], { w: 4, op: vo, dur: 1 }), wl('vh' + n, [cx + .32, cy - .3, roof + .7], [cx + .92, cy + .3, roof + .7], { w: 5, op: vo, dur: 1 }));
+      }
+    });
+    T.push(...gr);
+    T.push(box('hc', { x: 1.6, y: 4.4, w: .8, d: .8, z: s >= 2 ? 7.4 : 0, h: .8, c: K.home, op: s === 2 ? 1 : 0, dur: 2.4 }));
+    T.push(box('sc', { x: 1.6, y: 4.4, w: .8, d: .8, z: s >= 3 ? 7.4 : 0, h: .8, c: K.shorts, op: s === 3 ? 1 : 0, dur: 2.4 }));
+    const grp = h('g', { key: 'tg' + (s === 5 ? 'x' : ''), style: { transformBox: 'fill-box', transformOrigin: '50% 100%', animation: s === 5 ? 'tilt 5.5s ' + this.L.E + ' .4s 1 both' : 'none' } }, ...T);
+    const over = [
+      txt('a', 1260, 330, '4 головы Shorts', { size: 34, op: s >= 1 ? 1 : 0 }),
+      txt('a2', 1260, 380, 'негатив · позитив · досмотр · доля', { size: 28, op: s >= 1 ? 1 : 0 }),
+      txt('b', 1260, 500, s >= 3 ? 'Кубик Shorts — зажигает.' : 'Кубик Главной — темно.', { serif: true, size: 44, op: s === 2 || s === 3 ? 1 : 0 }),
+      txt('f1', 1260, 520, 'ŷ = φ(sg(h(x)))', { size: 44, op: s >= 4 ? 1 : 0 }),
+      txt('f1n', 1260, 568, 'для шумных задач', { size: 28, op: s >= 4 ? 1 : 0 }),
+      txt('f2', 1260, 680, 'L = Σᵢ Σₜ Mᵢₜ · ℓₜ', { size: 44, op: s >= 4 ? 1 : 0, delay: .3 }),
+      txt('f2n', 1260, 728, 'M = 0 вне Shorts', { size: 28, op: s >= 4 ? 1 : 0, delay: .3 }),
+      txt('cap', 120, 1000, 'Без вентиля — откат.', { serif: true, size: 48, op: s >= 5 ? 1 : 0, delay: .4 })];
+    return scene(s, 5, 'translate(820px,760px) scale(1.25)', [grp], over);
+  };
+
+  attn = s => {
+    const { h, K, P, box, wl, lab, txt, scene, at } = this.L;
+    const A = [];
+    const ctx = s === 0 ? 'home' : s <= 2 ? 'shorts' : 'home';
+    const att = s >= 2;
+    const W = !att ? [4, 4, 4, 4, 4, 4] : ctx === 'shorts' ? [12, 12, 5, 5, 1.5, 1.5] : [1.5, 1.5, 5, 5, 12, 12];
+    for (let i = 0; i < 6; i++) A.push(box('f' + i, { x: i * 2.1, y: 0, w: 1.2, d: 1.2, h: 1.2, c: K.stone }));
+    for (let i = 0; i < 6; i++) A.push(wl('l' + i, [3.4 + i * 1.15, .6, 6], [i * 2.1 + .6, .6, 1.2], { w: W[i], dur: 1.8 }));
+    A.push(box('hub', { x: 3, y: -.2, w: 6.5, d: 1.6, z: 6, h: .6, c: K.graphite }));
+    A.push(box('in', { x: 5.8, y: .2, w: .8, d: .8, z: 6.6, h: .8, c: ctx === 'shorts' ? K.shorts : K.home, dur: 1.2 }));
+    A.push(lab('inl', [6.6, .2, 7.4], 28, -8, ctx === 'shorts' ? 'вход: Shorts' : 'вход: Главная', { size: 30 }));
+    A.push(lab('hl', [9.5, -.2, 6.3], 30, 10, att ? 'Attention · слушает вход' : 'ResNet · жёсткая проводка', { size: 30 }));
+    [['свайпы', 1.65], ['общие', 5.85], ['длинные', 10.05]].forEach(([t, x], i) => A.push(lab('g' + i, [x, 1.2], -10, 56, t, { anchor: 'middle', size: 30 })));
+    const B = [];
+    const opt = s >= 5 ? 1.1 : 2.2, mat = s >= 5 ? .8 : 1.6;
+    B.push(box('o', { x: .1, y: .1, w: 5.8, d: 5.8, h: opt, c: K.stone, dur: 2 }));
+    B.push(box('m', { x: .1, y: .1, w: 5.8, d: 5.8, z: opt, h: mat, c: K.graphite, dur: 2 }));
+    const bc = [K.home, K.watch, K.shorts];
+    for (let j = 0; j < 2; j++) for (let i = 0; i < 3; i++) { const n = j * 3 + i; B.push(box('b' + n, { x: .5 + i * 1.8, y: .6 + j * 2.6, w: 1.1, d: 1.1, z: s >= 5 ? opt + mat : 5.6, h: 1.1, c: bc[(i + j) % 3], op: s >= 5 ? 1 : 0, delay: s >= 5 ? 1 + n * .12 : 0, dur: 1.6 })); }
+    B.push(box('ct', { x: 0, y: 0, w: 6, d: 6, h: 5.2, c: K.stone, empty: true }));
+    B.push(lab('lo', [6, 0, opt / 2], 30, 10, 'состояние оптимизатора', { size: 28 }));
+    B.push(lab('lm', [6, 0, opt + mat / 2], 30, 10, s >= 5 ? 'Lion + AQT' : 'матрицы', { size: 28 }));
+    B.push(lab('lb', [6, 0, opt + mat + 1.6], 30, 10, 'батч ↑', { size: 28, op: s >= 5 ? 1 : 0, delay: 1.4 }));
+    const cxk = 900, cyk = -60;
+    B.push(h('circle', { key: 'ck', cx: cxk, cy: cyk, r: 80, fill: 'none', stroke: K.paper, strokeWidth: 3 }));
+    for (let q = 0; q < 12; q++) { const a = q / 12 * 2 * Math.PI; B.push(h('line', { key: 'tk' + q, x1: cxk + 68 * Math.sin(a), y1: cyk - 68 * Math.cos(a), x2: cxk + 78 * Math.sin(a), y2: cyk - 78 * Math.cos(a), stroke: K.paper, strokeWidth: 2 })); }
+    B.push(h('line', { key: 'hd', x1: cxk, y1: cyk, x2: cxk + 52, y2: cyk - 30, stroke: K.paper, strokeWidth: 4, strokeLinecap: 'round' }));
+    B.push(txt('ckl', cxk, cyk + 130, 'время шага', { anchor: 'middle', size: 28 }));
+    return scene(s, 5, s >= 4 ? 'translate(-1920px,0px) scale(1)' : 'translate(0px,0px) scale(1)', [
+      at('A', 560, 620, A), at('B', 1920 + 560, 640, B),
+      txt('ca', 120, 1000, s === 3 ? 'Проводка перетекает обратно.' : 'Одно действие. Разный смысл.', { serif: true, size: 48, op: s >= 2 && s <= 3 ? 1 : 0 }),
+      txt('cb', 1920 + 120, 1000, 'Больше FLOPs. То же время.', { serif: true, size: 48, op: s >= 5 ? 1 : 0, delay: 1.6 })]);
+  };
+
+  infra = s => {
+    const { h, K, P, box, wl, lab, txt, flow, cube, arc, wp, scene, at, tower, student } = this.L;
+    const A = [];
+    const nw = s >= 1, crX = nw ? 5.2 : 13;
+    A.push(box('tr', { x: 0, y: 1, w: nw ? crX + .8 : 13.8, d: .6, h: .04, c: '#666666', dur: 2 }));
+    A.push(flow('old', wp([[2.6, 1.3, .1], [13, 1.3, .1]]), 5, 6, cube(K.stone, .34), { op: nw ? 0 : 1 }));
+    A.push(...tower('t', 0, 0, 2.4, true, { k: .7 }));
+    A.push(box('lb', { x: 6.4, y: 0, w: 2.4, d: 2.4, h: nw ? .001 : 2.6, c: K.stone, op: nw ? 0 : 1, dur: 2 }));
+    A.push(box('cr', { x: crX, y: .4, w: 1.6, d: 1.6, h: 1.2, c: K.stone, dur: 2.2 }));
+    A.push(flow('new', arc([1.2, 1.2, 3.8], [crX + .8, 1.2, 1.3], 110), 5, 3, cube(K.signal, .3), { op: nw ? 1 : 0, delay: nw ? 2 : 0 }));
+    A.push(lab('l1', [0, 0, 3.8], -10, -30, 'обучение', { size: 30 }));
+    A.push(lab('l2', [6.4, 0, 2.6], 0, -30, 'разметка', { size: 30, op: nw ? 0 : 1 }));
+    A.push(lab('l3', [crX, .4, 1.2], 20, -30, 'метки', { size: 30, dur: 2 }));
+    A.push(lab('l4', [crX + 1.6, 1.6], 30, 80, '−10 ч', { size: 72, fill: K.signal, op: nw ? 1 : 0, delay: 2.2 }));
+    const B = [];
+    const split = s >= 3, roof = 5.15 * .8;
+    B.push(...tower('st', 0, 0, 3, true, { k: .8, c: K.stone }));
+    B.push(box('gt', { x: .5, y: 7, w: 1, d: 1, h: 1.4, c: K.paper }));
+    B.push(box('te', { x: 7, y: .5, w: 1.2, d: 1.2, h: 5, c: K.graphite }));
+    B.push(lab('gtl', [.5, 8], -20, 56, 'ground truth', { anchor: 'end', size: 30 }));
+    B.push(lab('tel', [8.2, 1.7], 20, 56, 'учитель', { size: 30 }));
+    B.push(wl('ad', [2.2, 1.4, roof], [2.2, 1.4, .1], { c: K.paper, w: 3, dash: '10 8', anim: 'gdash 1.1s linear infinite', op: split ? 1 : 0 }));
+    const jit = s === 2 ? 'jit .32s linear infinite' : 'none';
+    B.push(h('g', { key: 'hg', style: { animation: jit } },
+      box('h1', { x: split ? .4 : 1, y: split ? 1.1 : 1, w: split ? .9 : 1, d: split ? .9 : 1, z: roof, h: 1, c: K.stone, dur: 1.8 }),
+      box('h2', { x: split ? 1.8 : 1, y: split ? 1.1 : 1, w: split ? .9 : 1, d: split ? .9 : 1, z: roof, h: 1, c: split ? K.signal : K.stone, op: split ? 1 : 0, dur: 1.8 })));
+    B.push(wl('r1', [1, 7.5, 1.4], split ? [.85, 1.55, roof + 1] : [1.5, 1.5, roof + 1], { w: 3, dur: 1.8 }));
+    B.push(wl('r2', [7.6, 1.1, 5], split ? [2.25, 1.55, roof + 1] : [1.5, 1.5, roof + 1], { c: K.signal, w: 3, dur: 1.8 }));
+    B.push(lab('hl1', [.4, 2, roof + 1], -20, -20, split ? 'рабочая' : 'одна голова', { anchor: 'end', size: 28 }));
+    B.push(lab('hl2', [2.7, 1.1, roof + 1], 20, -30, 'aux', { size: 28, op: split ? 1 : 0 }));
+    return scene(s, 3, s >= 2 ? 'translate(-1920px,0px) scale(1)' : 'translate(0px,0px) scale(1)', [
+      at('A', 420, 560, A), at('B', 1920 + 860, 560, B),
+      txt('ca', 120, 1000, nw ? 'Без отдельного цеха разметки.' : 'Отдельный цех разметки.', { serif: true, size: 48 }),
+      txt('cb', 1920 + 120, 1000, split ? 'Две головы вместо одной.' : 'Перетягивание одной головы.', { serif: true, size: 48 }),
+      txt('fm', 1920 + 120, 820, 'L = Σ CE(y, σ(zˢ)) + λ · Σ KL(σ(zᵀ) ‖ σ(zˢ_aux))', { size: 34, op: split ? 1 : 0, delay: 1 })]);
+  };
+
+  grid2 = s => {
+    const { K, P, box, lab, txt, scene } = this.L;
+    const U = .00124;
+    const C = [[1, 1, .0062, 3], [1, 0, .0015, 2], [0, 1, .0002, 1], [0, 0, 0, 0]];
+    const GX = i => (1 - i) * 3.4;
+    const k = [];
+    C.forEach(([i, j]) => k.push(box('p' + i + j, { x: GX(i), y: GX(j), w: 2.8, d: 2.8, h: .15, c: K.stone })));
+    C.forEach(([i, j, v, st]) => {
+      const on = s >= st, x = GX(i) + .35, y = GX(j) + .75, hh = Math.max(v / U, .06);
+      k.push(box('c' + i + j, { x, y, w: 1.3, d: 1.3, z: .15, h: on ? hh : .001, c: K.home, op: on || st === 0 ? 1 : 0, dur: 2.2 }));
+      if (st) k.push(lab('v' + i + j, [x + .65, y + .65, .15 + hh], 0, -22, '+' + v.toFixed(4), { anchor: 'middle', size: 34, op: on ? 1 : 0, delay: 1.6 }));
+      if (i === 1 && j === 1) {
+        k.push(box('gh', { x: x + 1.45, y, w: .85, d: 1.3, z: .15, h: s >= 4 ? .0017 / U : .001, c: K.stone, empty: true, op: s >= 4 ? 1 : 0, dur: 2 }));
+        
+      }
+    });
+    k.push(lab('ax1', [4.8, 6.5], -24, 40, 'старая архитектура', { anchor: 'end', size: 28 }), lab('ax2', [1.4, 6.5], -24, 40, 'новая архитектура', { anchor: 'end', size: 28 }));
+    k.push(lab('ay1', [6.5, 4.8], 24, 40, 'без данных Shorts', { size: 28 }), lab('ay2', [6.5, 1.4], 24, 40, '+ данные Shorts', { size: 28 }));
+    return scene(s, 4, 'translate(960px,560px) scale(1.1)', k, [
+      txt('ghl', 1300, 360, 'пунктир = сумма по отдельности, +0.0017', { size: 30, op: s >= 4 ? 1 : 0, delay: 1.4 }),
+      txt('cap', 120, 1000, 'Shorts улучшил Главную.', { serif: true, size: 48, op: s >= 4 ? 1 : 0, delay: 1.8 })]);
+  };
+
+  codeScene = s => {
+    const { K, P, box, wl, lab, txt, flow, cube, arc, scene, at, tower, student, ln } = this.L;
+    const hl = g => s === 0 || g.includes(s); const DIM = '#333333';
+    const k = [];
+    k.push(...tower('t', 0, 0, 2.4, true, { k: .9, cols: [0, 1, 2, 3, 4, 5].map(i => hl(i === 0 ? [1] : [2]) ? K.graphite : DIM) }));
+    const roof = 5.15 * .9;
+    const HD = [[0, 0, K.home, 0], [1, 0, K.watch, 0], [0, 1, K.shorts, 1], [1, 1, K.shorts, 1]];
+    HD.forEach(([i, j, c, sh], n) => k.push(box('h' + n, { x: .3 + i * 1.1, y: .3 + j * 1.1, w: .7, d: .7, z: roof, h: .9, c: (s === 4 ? sh : hl([3, 5])) ? c : DIM })));
+    const ring = Array.from({ length: 29 }, (_, q) => { const t = q / 28 * 2 * Math.PI; return P(1.75 + .55 * Math.cos(t), 1.75 + .55 * Math.sin(t), roof + .02); });
+    k.push(ln('vr', ring, { w: 4, op: s === 3 ? 1 : 0 }));
+    k.push(box('cr', { x: 5.2, y: -1.4, w: 1.4, d: 1.4, h: 1, c: K.stone, op: s >= 5 ? 1 : 0 }));
+    k.push(flow('sg', arc([1.2, 1.2, 5.6], [5.9, -.7, 1.1], 90), 4, 2.8, cube(K.signal, .28), { op: s === 5 ? 1 : 0 }));
+    k.push(...student('su', 5.4, 3.2, s >= 6, { hc: K.stone }));
+    k.push(box('ax', { x: 6.5, y: 3.5, w: .4, d: .4, z: 1.5, h: s >= 6 ? .45 : .001, c: K.signal, op: s >= 6 ? 1 : 0, delay: .6 }));
+    k.push(flow('sg2', arc([5.9, -.7, 1.1], [6.7, 3.7, 2], 70), 3, 2.4, cube(K.signal, .24), { op: s >= 6 ? 1 : 0, delay: 1 }));
+    return scene(s, 6, 'translate(1500px,560px) scale(1)', k);
+  };
+
+  renderVals() {
+    const st = i => this.stepOf(i);
+    const CL = [
+      ['def teacher_step(batch, surface):', '', 0],
+      ['    ', '# 1 · вход: чужие отсеки — нули', 1],
+      ['    x = cat([batch.common] +', '', 1],
+      ['            [batch.feat[s] * (s == surface)', '', 1],
+      ['             for s in SURFACES])', '', 1],
+      ['    h = self.hiformer(x)  ', '# 2 · attention', 2],
+      ['    ', '# 3 · detach() = stop-gradient', 3],
+      ['    y = {t: head(h.detach() if t in SG else h)', '', 3],
+      ['         for t, head in self.heads.items()}', '', 3],
+      ['    M = task_mask(surface)  ', '# 4 · M[t] ∈ {0,1}', 4],
+      ['    loss = sum(M[t] * ce(y[t], batch.label[t])', '', 4],
+      ['               for t in y)', '', 4],
+      ['    loss.backward()  ', '# Lion + AQT', 4],
+      ['    writer.put(batch.id, y)  ', '# 5 · in-band метки', 5],
+      ['    return loss', '', 0],
+      [' ', '', 0],
+      ['def student_step(batch, lam):', '', 6],
+      ['    h = self.backbone(batch.x)', '', 6],
+      ['    serve = ce(self.serve(h), batch.label)', '', 6],
+      ['    aux = kl(soft(batch.teacher), soft(self.aux(h)))', '', 6],
+      ['    return serve + lam * aux  ', '# 6 · aux', 6]];
+    const cs = st(16);
+    const codeLines = CL.map(([code, comment, g]) => {
+      const act = cs > 0 && g === cs, dim = cs > 0 && !act;
+      return { code, comment, bg: act ? 'rgba(88,196,221,0.14)' : 'rgba(0,0,0,0)', fg: dim ? '#555555' : '#FFFFFF', cm: dim ? '#555555' : '#5CD0B3' };
+    });
+    const NAR = [["Статья KDD’26 (Google, DeepMind): перенос знаний от модели Homepage к модели Shorts."],["Три поверхности: Homepage, Watch Page и Shorts.","Учитель — большая модель, обучена на данных Homepage и Watch Page.","Студенты — маленькие модели, по одной на поверхность. Они ранжируют выдачу.","Учитель передаёт студентам мягкие метки. Shorts к учителю не подключён."],["Акт I. Почему прямой перенос на Shorts не работает."],["Homepage: пользователь выбирает видео из сетки. Клик — явный сигнал.","Пользователь сам выбирает, что смотреть.","Shorts: видео запускаются автоматически в ленте. Просмотр — не выбор.","Длина видео: 15–20 мин на Homepage, около 1 мин в Shorts."],["Попытка: взять ближайшую задачу учителя вместо задачи студента. Размер кубика — среднее значение метки.","Клик 0.044 против позитива 0.435 — разница в 10 раз.","Досмотр: 0.768 против 0.925.","Потребление: 415.8 против 19.5 — разные шкалы.","Доля досмотра: 0.692 против 0.711.","Средние совпадают в двух парах из четырёх."],["Одни и те же видео Shorts: поведение в ленте и в браузинге различается. Досмотр 0.925 против 0.537.","Остальные задачи тоже различаются.","Признаки: каждая клетка — группа входных признаков.","Доля признаков Shorts: 6.2% у учителя, 79% у студента."],["Офлайн AUC позитива: 0.7706 → 0.7708. Без изменений.","Голубая плоскость — уровень контрольной группы A/B-теста (0%). Выше — рост метрики, ниже — падение.","Онлайн: вовлечённость −0.12%, потребление −0.46%.","Вывод: такие метки ухудшают студента."],["Акт II. Решение: дообучить учителя на данных Shorts."],["Данные: в обучение учителя добавлен поток Shorts.","Вход: общие признаки + признаки своей поверхности.","Признаки других поверхностей заполняются нулями.","Старые задачи не меняются: для них новые признаки нулевые."],["Задачи: к учителю добавлены 4 головы Shorts.","Новые головы пока не обучены.","Сэмпл Homepage: маска = 0, головы Shorts не обучаются.","Сэмпл Shorts: маска = 1, головы Shorts обучаются.","Шумные задачи: stop-gradient, градиент не идёт в общий backbone.","Без stop-gradient качество старых задач падает."],["Архитектура: ResNet использует одни веса признаков для всех поверхностей.","Вход Shorts — веса те же.","HiFormer (attention): веса зависят от входа. Для Shorts важнее свайпы.","Для Homepage важнее длинные просмотры.","Attention требует больше памяти.","Lion вместо Adagrad и квантование AQT освобождают память. Время шага то же."],["Раньше: после обучения учителя отдельный инференс размечал данные.","In-band: метки пишутся во время обучения. Задержка −10 ч.","У студента одна голова учится и на ground truth, и на метках учителя.","Решение: отдельная aux-голова для меток учителя."],["Акт III. Результаты."],["Абляция 2×2: архитектура × данные Shorts. Метрика — AUC клика Homepage, база 0.7557.","Только данные: +0.0002.","Только архитектура: +0.0015.","Вместе: +0.0062.","Сумма по отдельности +0.0017 — вместе почти в 4 раза больше."],["Онлайн A/B-тесты на Shorts. Плоскость — уровень контроля (0%).","Без дообучения: −0.12% и −0.46%.","С дообучением: +0.16% и +0.37%.","С дообучением и новой архитектурой: +0.27% и +0.82%.","Homepage: +0.09%. Watch Page: без изменений."],["Учитель подключён ко всем трём поверхностям.","Подход применим к другим форматам: длинные видео, клипы, посты.","Конец."],["Метод в двух функциях. Нажимайте →.","Вход: признаки других поверхностей — нули.","Backbone — HiFormer.","detach() — stop-gradient для шумных задач.","Маска M[t]: головы Shorts учатся только на Shorts. Оптимизатор — Lion + AQT.","writer.put — метки пишутся во время обучения.","Студент: основная голова на ground truth + aux-голова с KL к учителю."]];
+    const stp = {}, nar = {};
+    this.MAX.forEach((m, i) => { const v = Math.min(st(i), m); stp['s' + i] = m ? 'ШАГ ' + (v + 1) + ' / ' + (m + 1) : ''; nar['i' + i] = String(i + 1).padStart(2, '0') + (m ? '·' + (v + 1) : ''); nar['t' + i] = NAR[i][v] || ''; });
+    const CAP = ['Нажмите → — шаги по коду.', 'Вход: чужие отсеки — нули.', 'Бэкбон на внимании.', 'Вентиль для шумных задач.', 'Маска: головы Shorts — только Shorts.', 'Метки прямо из обучения.', 'Студент: aux-голова для учителя.'];
+    return {
+      sc1: this.world(st(1), 'pro'), sc3: this.choice(st(3)), sc4: this.pipes(st(4)), sc5: this.bars(st(5)),
+      sc6: this.water(st(6), 'A'), sc8: this.beam(st(8)), sc9: this.valve(st(9)), sc10: this.attn(st(10)),
+      sc11: this.infra(st(11)), sc13: this.grid2(st(13)), sc14: this.water(st(14), 'B'), sc15: this.world(st(15), 'epi'),
+      sc16: this.codeScene(cs), codeLines, stp, nar
+    };
+  }
+}
+</script>
+</body>
+</html>

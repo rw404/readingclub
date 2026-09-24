@@ -1,0 +1,189 @@
+[
+ {
+  "idx": 0,
+  "label": "01 Титр",
+  "screen": "01",
+  "layers": [],
+  "morph": "",
+  "notes": "ИНТЕРТИТР. Шаблон: фон night #111110, PT Serif 64 paper, левый нижний сектор (x=160, y≈560). Удержание 3 с. Manim: FadeIn(title, run_time=1.4) → wait(3) → next_slide().",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  <div style=\"position:absolute;left:160px;top:520px;display:flex;flex-direction:column;gap:32px;max-width:1400px;\">\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;\">ПРОЛОГ</div>\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;\">Один учитель. Три способа смотреть.</div>\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;font-style:italic;\">Jiang, Khani et al. · KDD 2026</div>\n  </div>\n<div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i0 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t0 }}</span></div>\n"
+ },
+ {
+  "idx": 1,
+  "label": "02 Общий план",
+  "screen": "02",
+  "layers": [],
+  "morph": "",
+  "notes": "ОБЩИЙ ПЛАН. Камера: origin (960,170), без масштаба. Слои по порядку наложения: L1 ленты Home/Watch (земля) → L2 площадки Home, Watch → L3 студенты Home, Watch → L4 башня учителя (6 слоёв снизу вверх) + головы → L5 дуги signal → L6 площадка Shorts + пластины → L7 студент Shorts → L8 подписи. Шаги: [1] площадки поднимаются из плоскости (h: 0→0.3) [2] башня растёт послойно, задержка 0.2 с [3] студенты [4] ленты вытягиваются к подножию, по ним едут кубики данных; с крыши к студентам летит signal. Shorts остаётся stone — не подключено. Переход: этот кадр вернётся как эпилог (слайд 16).",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc1 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s1 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i1 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t1 }}</span></div>\n"
+ },
+ {
+  "idx": 2,
+  "label": "03 Титр акт I",
+  "screen": "03",
+  "layers": [],
+  "morph": "",
+  "notes": "ИНТЕРТИТР. Камера до этого медленно панорамирует к серой площадке Shorts. FadeIn 1.4 с, удержание 3 с.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  <div style=\"position:absolute;left:160px;top:560px;display:flex;flex-direction:column;gap:32px;max-width:1400px;\">\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;\">АКТ I · МИР И ПОЛОМКА</div>\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;\">А там, где никто ничего не выбирает?</div>\n  </div>\n<div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i2 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t2 }}</span></div>\n"
+ },
+ {
+  "idx": 3,
+  "label": "04 Выбор и поток",
+  "screen": "04",
+  "layers": [],
+  "morph": "",
+  "notes": "ГЕРОЙСКИЙ КАДР 2а. Две группы: LEFT origin (470,360), RIGHT origin (1330,330). LEFT: L1 платформа → L2 плитки 2.15×0.9 (длинные) → L3 фигура. RIGHT: L1 конвейер y∈[-12,10] (обрезан рамкой) → L2 пластины 1.2×0.08×1.1, MoveAlongPath, 11 с цикл, 6 шт → L3 фигура (неподвижна, поверх пластин). Шаги: [1] одна плитка поднимается z+0.6 (раздумье) [2] фигура сама шагает на плитку (1.8 с) [3] снизу сравнение: плита 4.4 кл. (15–20 мин) против пластины 0.22 кл. (≈1 мин). Масштаб: 1 мин = 0.22 клетки.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc3 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s3 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i3 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t3 }}</span></div>\n"
+ },
+ {
+  "idx": 4,
+  "label": "05 Трубы",
+  "screen": "05",
+  "layers": [],
+  "morph": "",
+  "notes": "ПАРЫ ЗАДАЧ. 4 ряда в экранных координатах (y = 330 + i·200), без перекрытий. Кубик: сторона = 1.7 · v / max(пары). Шаг i: GrowFromCenter(кубик учителя) → Create(стрелка) → GrowFromCenter(кубик студента) → Write(отношение). Прошлые ряды приглушаются до 35%. [5] остаются яркими только досмотр и доля досмотра, пометка «≈ совпало».",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc4 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s4 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i4 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t4 }}</span></div>\n"
+ },
+ {
+  "idx": 5,
+  "label": "06 Метки и признаки",
+  "screen": "06",
+  "layers": [],
+  "morph": "",
+  "notes": "2в → 2г. Камера панорамирует на −1920 px между частями. Часть A origin (640,760): пары столбиков, высота = значение × 7 кл.; лента = shorts, браузинг = watch. [1] главные пары (досмотр, негатив) растут [2] второстепенные, тоньше, без чисел. Часть B origin (2390,330): две плиты 10×10, шаг 0.56. [3] панорама, плиты [4] клетки Shorts зажигаются с каскадом 12 мс: 6 у учителя, 79 у студента.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc5 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s5 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i5 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t5 }}</span></div>\n"
+ },
+ {
+  "idx": 6,
+  "label": "07 Под воду",
+  "screen": "07",
+  "layers": [],
+  "morph": "",
+  "notes": "2д — ЗАПОМНИТЬ КОМПОЗИЦИЮ, рифма со слайдом 15. Origin (760,470). Порядок: L1 отрицательные столбики (z от −h до 0) → L2 плоскость воды (watch, fill-opacity 0.3) → L3 положительные столбики → L4 студент Shorts + signal. Масштаб: 1% = 5 клеток. Шаги: [0] офлайн 0.7706 → 0.7708 [1] вода появляется [2] два столбика уходят под воду (−0.12%, −0.46%) [3] подпись.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc6 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s6 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i6 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t6 }}</span></div>\n"
+ },
+ {
+  "idx": 7,
+  "label": "08 Титр акт II",
+  "screen": "08",
+  "layers": [],
+  "morph": "",
+  "notes": "ИНТЕРТИТР акта II. FadeIn 1.4 с, удержание 3 с.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  <div style=\"position:absolute;left:160px;top:560px;display:flex;flex-direction:column;gap:32px;max-width:1400px;\">\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;\">АКТ II · ПЕРЕСТРОЙКА УЧИТЕЛЯ</div>\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;\">Учителя нужно пустить в чужой мир.</div>\n  </div>\n<div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i7 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t7 }}</span></div>\n"
+ },
+ {
+  "idx": 8,
+  "label": "09 Вход с отсеками",
+  "screen": "09",
+  "layers": [],
+  "morph": "",
+  "notes": "3а + 3б. Origin (560,380). Порядок: L1 три ленты одинаковой ширины 1.0 (уходят за нижнюю рамку) → L2 кубики данных по лентам → L3 брус-вход из 4 отсеков (общие 6.4 | Home 3.1 | Watch 3.1 | Shorts 3.1) → L4 башня над брусом, обрезана верхней рамкой → L5 кубик-сэмпл. Шаги [1–3]: по одному сэмплу; горят «общие» + свой отсек, чужие становятся пустым пунктирным контуром (fill-opacity 1→0). Справа формула построчно, нули — stone.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc8 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s8 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i8 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t8 }}</span></div>\n"
+ },
+ {
+  "idx": 9,
+  "label": "10 Вентиль",
+  "screen": "10",
+  "layers": [],
+  "morph": "",
+  "notes": "3в + 3г + 3д — ГЕРОЙСКИЙ КАДР. Камера: origin (820,760), scale 1.25. Головы 3×3, шаг 1.3; старые: home ×2, watch ×2; новые Shorts: (2,1),(0,2),(1,2),(2,2); шумные с вентилем: (0,2),(2,1). [1] новые головы вырастают тёмными [2] кубик Главной поднимается — новые головы тёмные [3] кубик Shorts — новые головы загораются [4] градиенты пунктиром вниз (dashoffset-анимация); у шумных голов вентиль, пунктир обрывается у основания, сама голова мерцает [5] без вентиля: башня кренится и отматывается назад (Rotate −8° и обратно, 5.5 с, опора — низ башни).",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc9 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s9 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i9 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t9 }}</span></div>\n"
+ },
+ {
+  "idx": 10,
+  "label": "11 Проводка",
+  "screen": "11",
+  "layers": [],
+  "morph": "",
+  "notes": "4б → 4в → 4г. Часть A origin (560,700): 6 кубиков-признаков, хаб на z=6, связи — линии, stroke-width анимируется. [0] ResNet, вход Главная, все связи 4 px [1] вход Shorts — ничего не меняется [2] Attention, вход Shorts: свайпы 12, общие 5, длинные 1.5 [3] вход Главная — толщины перетекают обратно. [4] панорама −1920 на память ускорителя. [5] оптимизатор 2.2→1.1, матрицы 1.6→0.8, в освободившееся место входят кубики батча; стрелка часов стоит.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc10 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s10 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i10 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t10 }}</span></div>\n"
+ },
+ {
+  "idx": 11,
+  "label": "12 Дистилляция",
+  "screen": "12",
+  "layers": [],
+  "morph": "",
+  "notes": "5а → 5г. Часть A origin (420,520): трасса. [0] обучение → разметка → ящик, по трассе едут серые кубики [1] здание разметки растворяется (h→0), ящик едет к x=7.2, трасса короче, с крыши башни летят кубики signal; −10 ч. [2] панорама на студента: одна голова, две верёвки (ink, signal), голова дрожит [3] голова расщепляется: рабочая (только ink) и aux (только signal, пунктир влияния вниз в башню); формула.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc11 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s11 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i11 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t11 }}</span></div>\n"
+ },
+ {
+  "idx": 12,
+  "label": "13 Титр акт III",
+  "screen": "13",
+  "layers": [],
+  "morph": "",
+  "notes": "ИНТЕРТИТР акта III.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  <div style=\"position:absolute;left:160px;top:560px;display:flex;flex-direction:column;gap:32px;max-width:1400px;\">\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#F4D345;letter-spacing:0.08em;\">АКТ III · РЕЗУЛЬТАТЫ</div>\n    <div style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:72px;line-height:1.2;color:#FFFFFF;\">Вместе — больше суммы.</div>\n  </div>\n<div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i12 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t12 }}</span></div>\n"
+ },
+ {
+  "idx": 13,
+  "label": "14 Два на два",
+  "screen": "14",
+  "layers": [],
+  "morph": "",
+  "notes": "6а — ГЕРОЙСКИЙ КАДР. Камера origin (820,470), scale 1.2. Сетка 2×2, шаг 3.4; x = архитектура, y = данные Shorts. Высота: 1 клетка = 0.00124 AUC. Порядок наложения: (0,0) → (1,0) → (0,1) → (1,1) → призрак. [1] только данные +0.0002 [2] только архитектура +0.0015 [3] оба +0.0062 [4] пунктирный призрак +0.0017 (сумма) и подпись. Метрика — AUC клика на Главной от 0.7557.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc13 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s13 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i13 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t13 }}</span></div>\n"
+ },
+ {
+  "idx": 14,
+  "label": "15 Над водой",
+  "screen": "15",
+  "layers": [],
+  "morph": "",
+  "notes": "6г — РИФМА со слайдом 7: та же камера (760,470), та же вода, та же первая пара. [1] без дообучения — под воду [2] выровненный — над водой [3] выровненный + масштабированный [4] побочно: Главная +0.09%, просмотр 0.00%. Числа — только у текущей пары.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc14 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s14 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i14 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t14 }}</span></div>\n"
+ },
+ {
+  "idx": 15,
+  "label": "16 Эпилог",
+  "screen": "16",
+  "layers": [],
+  "morph": "",
+  "notes": "ЭПИЛОГ — тот же общий план, что на слайде 2, но всё подключено: три ленты, новые головы Shorts на крыше, signal ко всем студентам. [1] подписи площадок сменяются: длинные видео · клипы · посты (crossfade) [2] затемнение в night и финальный интертитр.",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc15 }}\n  \n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s15 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i15 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t15 }}</span></div>\n"
+ },
+ {
+  "idx": 16,
+  "label": "17 Код",
+  "screen": "17",
+  "layers": [],
+  "morph": "",
+  "notes": "ПРИЛОЖЕНИЕ. Псевдокод PyTorch; каждый шаг подсвечивает строки и соответствующую часть мини-башни справа. Manim: Code(...) + SurroundingRectangle по группам строк; справа тот же iso-компонент tower().",
+  "duration": null,
+  "style": "background:#000;overflow:hidden;",
+  "body": "\n  {{ sc16 }}\n  \n  <div style=\"position:absolute;left:104px;top:150px;width:1160px;display:flex;flex-direction:column;font-family:'JetBrains Mono',monospace;font-size:26px;line-height:1.3;\">\n    <sc-for list=\"{{ codeLines }}\" as=\"ln\" hint-placeholder-count=\"21\">\n      <div style=\"display:flex;min-height:35px;align-items:center;padding:0 16px;white-space:pre;background:{{ ln.bg }};color:{{ ln.fg }};transition:background 0.8s, color 0.8s;\"><span>{{ ln.code }}</span><span style=\"color:{{ ln.cm }};transition:color 0.8s;\">{{ ln.comment }}</span></div>\n    </sc-for>\n  </div>\n<div style=\"position:absolute;left:120px;right:120px;top:44px;display:flex;justify-content:space-between;align-items:baseline;font-family:'Computer Modern Serif','PT Serif',serif;font-size:30px;color:#888888;pointer-events:none;\"><div></div><span>{{ stp.s16 }}</span></div>\n  <div style=\"position:absolute;left:120px;right:120px;bottom:36px;display:flex;gap:40px;align-items:baseline;pointer-events:none;\"><span style=\"flex:0 0 96px;font-family:'Computer Modern Serif','PT Serif',serif;font-size:24px;color:#F4D345;\">{{ nar.i16 }}</span><span style=\"font-family:'Computer Modern Serif','PT Serif',serif;font-size:28px;line-height:1.35;color:#DDDDDD;text-wrap:pretty;flex:1 1 0;min-width:0;\">{{ nar.t16 }}</span></div>\n"
+ }
+]

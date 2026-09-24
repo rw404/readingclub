@@ -55,6 +55,7 @@ def margin_report(arr, size, slack=3):
 
 
 SOURCES = []
+OWN_TOKENS = False
 
 
 def source_palette_report():
@@ -67,8 +68,10 @@ def source_palette_report():
     import re
     allowed = {v.upper() for v in PALETTE.values()}
     stray = {}
-    for py in sorted(list((ROOT / "deckkit").rglob("*.py"))
-                     + list(SOURCES)):
+    # deckkit's own literals are the first talk's tokens; a deck with its own
+    # palette is checked on its own sources only
+    kit = [] if OWN_TOKENS else list((ROOT / "deckkit").rglob("*.py"))
+    for py in sorted(kit + list(SOURCES)):
         for m in re.finditer(r'"(#[0-9A-Fa-f]{6})"', py.read_text(
                 encoding="utf-8")):
             hx = m.group(1).upper()
@@ -103,6 +106,28 @@ def palette_report(arr, tol=26.0):
     return bad
 
 
+def deck_tokens(deck):
+    """A deck may bring its own palette and margin: `"tokens"` in deck.json
+    names a module in the deck that defines PALETTE, BG and optionally
+    MARGIN; `"margin"` overrides the margin in px.  Without them the deck is
+    checked against deckkit's own tokens, as the first talk is."""
+    global TOKENS, BG_RGB, PALETTE, BG, MARGIN, OWN_TOKENS
+    mod = deck.cfg.get("tokens")
+    if mod:
+        OWN_TOKENS = True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "deck_tokens", deck.root / mod)
+        m = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(m)
+        PALETTE, BG = m.PALETTE, m.BG
+        MARGIN = getattr(m, "MARGIN", MARGIN)
+    MARGIN = deck.cfg.get("margin", MARGIN)
+    TOKENS = np.array([[int(h[i:i + 2], 16) for i in (1, 3, 5)]
+                       for h in PALETTE.values()], dtype=float)
+    BG_RGB = np.array([int(BG[i:i + 2], 16) for i in (1, 3, 5)], dtype=float)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("deck")
@@ -111,6 +136,7 @@ def main():
     a = ap.parse_args()
 
     deck = Deck(a.deck)
+    deck_tokens(deck)
     stills = pathlib.Path(a.stills) if a.stills else deck.stills
     data = deck.frames()
     content = deck.content_frames()
@@ -142,7 +168,8 @@ def main():
         print(f"    {k:<6} {v}")
     SOURCES.extend((deck.root / "deck").rglob("*.py"))
     stray = source_palette_report()
-    print(f"colour literals      : {'only the 8 tokens' if not stray else stray}")
+    print(f"colour literals      : "
+          f"{f'only the {len(PALETTE)} tokens' if not stray else stray}")
     print(f"off-palette in stills: {len(palette_hits)} frames "
           f"(H.264 chroma drift, not design)")
 

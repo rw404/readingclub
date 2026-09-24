@@ -73,12 +73,56 @@ def prune(deck, dest_dir):
     return kept
 
 
+def clip_seconds(path):
+    out = subprocess.check_output(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "csv=p=0", str(path)]).decode().strip()
+    return float(out)
+
+
+def auto_advance(dest, kept):
+    """Carry `auto_next` over to PowerPoint.
+
+    manim-slides honours `next_slide(auto_next=True)` only in its own player
+    and in HTML.  A deck that follows each click with a looping slide needs it
+    in PPTX too, or every click would have to be pressed twice: such slides
+    get a timed transition that fires when their clip ends.
+    """
+    if not any(sl.get("auto_next") for _, _, sl in kept):
+        return 0
+    from lxml import etree
+    from pptx import Presentation
+    ns = "http://schemas.openxmlformats.org/presentationml/2006/main"
+    prs = Presentation(str(dest))
+    n = 0
+    for slide, (_, _, sl) in zip(prs.slides, kept):
+        if not sl.get("auto_next"):
+            continue
+        el = slide._element
+        tr = etree.SubElement(el, f"{{{ns}}}transition")
+        tr.set("advTm", str(int(round(clip_seconds(sl["file"]) * 1000))))
+        timing = el.find(f"{{{ns}}}timing")
+        if timing is not None:          # schema order: transition, timing
+            timing.addprevious(tr)
+        n += 1
+    prs.save(str(dest))
+    return n
+
+
 def stills(deck, kept):
-    """One PNG per slide, its settled last frame — what `verify` inspects."""
+    """One PNG per slide, its settled last frame — what `verify` inspects.
+
+    A looping slide shares its screen with the click before it; the still of
+    the click (its settled end) is kept, not a moment from inside the loop.
+    """
+    if deck.stills.exists():
+        shutil.rmtree(deck.stills)
     deck.stills.mkdir(parents=True, exist_ok=True)
     for _, screen, sl in kept:
         clip = pathlib.Path(sl["file"])
         dest = deck.stills / f"{screen.replace('.', '_')}.png"
+        if dest.exists():
+            continue
         subprocess.run(
             ["ffmpeg", "-y", "-v", "error", "-sseof", "-1", "-i", str(clip),
              "-update", "1", "-q:v", "1", str(dest)], check=True)
@@ -112,11 +156,15 @@ def main():
         print(r.stdout[-4000:])
         raise SystemExit("manim-slides convert failed")
 
+    timed = auto_advance(dest, kept)
+
     if a.keep_stills:
         stills(deck, kept)
 
     size = dest.stat().st_size / 1048576
     print(f"{dest}  —  {len(kept)} slides, {SLIDE_W}x{SLIDE_H}, {size:.1f} MB")
+    if timed:
+        print(f"  {timed} slides advance by themselves into their loop")
     print("  кадры:", ", ".join(s for _, s, _ in kept[:6]), "…",
           ", ".join(s for _, s, _ in kept[-3:]))
 

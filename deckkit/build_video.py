@@ -9,6 +9,7 @@ and the PPTX come out of one render — `build_pptx.py` only has to convert.
     python -m deckkit.build_video paper_1_minimalism
     python -m deckkit.build_video paper_1_minimalism --parts 4 5
     python -m deckkit.build_video paper_1_minimalism --quality l   # proof
+    python -m deckkit.build_video paper_2_intent_dissonance --quality k --jobs 4
 """
 
 import argparse
@@ -63,6 +64,8 @@ def main():
     ap.add_argument("deck")
     ap.add_argument("--parts", nargs="*", type=int)
     ap.add_argument("--quality", default="h", choices=list(QUALITY_DIR))
+    ap.add_argument("--jobs", type=int, default=1,
+                    help="parts rendered at once (each is its own process)")
     a = ap.parse_args()
 
     deck = Deck(a.deck)
@@ -70,13 +73,25 @@ def main():
     deck.out.mkdir(parents=True, exist_ok=True)
     (deck.out / "parts").mkdir(exist_ok=True)
 
-    rendered = []
-    for p in wanted:
+    def one(p):
         mp4 = render(deck, p, a.quality)
         dest = deck.out / "parts" / f"{deck.name}-part{p}.mp4"
         shutil.copy2(mp4, dest)
-        rendered.append(dest)
         print(f"  {dest.name}  {probe(dest):6.1f} s", flush=True)
+        return dest
+
+    if a.jobs > 1:
+        # parallel Manim processes race to create the shared caches
+        for d in ("texts", "Tex", "images", "videos"):
+            (deck.media / d).mkdir(parents=True, exist_ok=True)
+        # parallel Manim processes race to create the shared caches
+        for d in ("texts", "Tex", "images", "videos"):
+            (deck.media / d).mkdir(parents=True, exist_ok=True)
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(a.jobs) as pool:
+            rendered = list(pool.map(one, wanted))
+    else:
+        rendered = [one(p) for p in wanted]
 
     if list(wanted) == deck.parts:
         full = deck.out / f"{deck.name}-full.mp4"
